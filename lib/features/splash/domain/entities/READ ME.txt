@@ -1,0 +1,1 @@
+entities folder is like models folder but entities responsible of retreive data that i will use in the app (part of the data)
