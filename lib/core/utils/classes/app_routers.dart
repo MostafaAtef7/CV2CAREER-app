@@ -6,6 +6,7 @@ abstract class AppRouter {
 
   static final router = GoRouter(routes: [
     GoRoute(
+      // default openning page
       path: "/",
       builder: (ctx, state) => const SplashView(),
     ),
