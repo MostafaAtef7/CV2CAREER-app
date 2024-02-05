@@ -1,28 +1,47 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gp_app/constants.dart';
+import 'package:gp_app/core/utils/classes/app_routers.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
 
   @override
   State<SplashViewBody> createState() => _SplashViewBodyState();
-  
 }
 
 class _SplashViewBodyState extends State<SplashViewBody> {
   @override
-  void initState() {  
+  void initState() {
+    navigatToHomeView();
     super.initState();
   }
+
+  void navigatToHomeView() {
+    Future.delayed(const Duration(seconds: 5), () {
+      GoRouter.of(context).push(AppRouter.homeView);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      backgroundColor: kPrimaryColor,
       body: Center(
-        child: Text(
-          "WELCOME TO CV2CAREER APP",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 15,
-          ),
+        child: AnimatedTextKit(
+          animatedTexts: [
+            TypewriterAnimatedText(
+              "CV2CAREER",
+              textStyle: const TextStyle(
+                fontSize: 25,
+                color: Colors.white,
+                fontFamily: "Rubik",
+              ),
+              speed: const Duration(milliseconds: 300),
+            ),
+          ],
+          isRepeatingAnimation: false,
         ),
       ),
     );
