@@ -1,6 +1,0 @@
-core folder contains folders that common in all application
-contains three folders
-[1] errors
-[2] utils
-[3] widgets
- 

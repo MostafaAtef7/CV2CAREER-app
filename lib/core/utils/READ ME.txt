@@ -1,4 +1,0 @@
-utils folder contains any thing that used in general over all application (any thing common in all application). 
-contains two folders 
-[1] classes
-[2] functions

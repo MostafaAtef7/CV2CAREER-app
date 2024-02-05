@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gp_app/core/utils/classes/app_routers.dart';
 
-import 'features/splash/presentation/view/splash_view.dart';
 void main(){
   runApp(const GpApp());
 }
@@ -10,12 +10,14 @@ class GpApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        ),
-      home: const SplashView(),
+    return SafeArea(
+      child: MaterialApp.router(
+        routerConfig: AppRouter.router,
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: true,
+          ),
+      ),
     );
   }
 
