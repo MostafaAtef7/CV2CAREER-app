@@ -12,17 +12,33 @@ class HomeViewBody extends StatefulWidget {
 class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text("General Jobs for you:"),
-            const SizedBox(
-              height: 7,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.only(left: 5, right: 30),
+            decoration: const BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(24),
+                  bottomRight: Radius.circular(24)),
             ),
-            ListView.builder(
+            child: const Text(
+              "Discover new job opportunities:",
+              style: TextStyle(
+                fontFamily: "Rubik",
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 7,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (ctx, index) {
@@ -30,8 +46,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               },
               itemCount: 10,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

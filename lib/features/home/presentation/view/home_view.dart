@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gp_app/constants.dart';
+import 'package:gp_app/core/widgets/custom_app_bar.dart';
 
 import 'functions/bottom_bar_select_page.dart';
 import 'widgets/bottom_bar.dart';
@@ -17,16 +17,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: kPrimaryColor,
-          elevation: 2,
-          automaticallyImplyLeading: false,
-          centerTitle: true,
-          title: const Text(
-            "CV2CAREER",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize: 20,fontFamily: "Rubix"),
-          ),
-        ),
+        appBar: const CustomAppBar(iconButton: null,),
         bottomNavigationBar: BottomBar(
           index: index,
           onTap: (value) {

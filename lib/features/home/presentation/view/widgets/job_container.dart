@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gp_app/core/utils/classes/app_routers.dart';
 
 class JobContainer extends StatelessWidget {
   const JobContainer({super.key});
@@ -61,7 +63,9 @@ class JobContainer extends StatelessWidget {
               ),
             ],
           ),
-          onTap: () {},
+          onTap: () {
+            GoRouter.of(context).push(AppRouter.jobViewDetails);
+          },
         ),
       ),
     );
