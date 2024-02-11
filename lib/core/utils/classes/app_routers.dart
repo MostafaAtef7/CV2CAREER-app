@@ -12,9 +12,11 @@ abstract class AppRouter {
       path: "/",
       builder: (ctx, state) => const SplashView(),
     ),
+ 
     GoRoute(
       path: homeView,
       builder:(context, state) => const HomeView(),
     ),
-  ]);
+  ],
+  );
 }

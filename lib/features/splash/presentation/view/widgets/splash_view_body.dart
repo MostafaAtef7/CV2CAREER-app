@@ -27,7 +27,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kPrimaryColor,
+      backgroundColor: Colors.white,
       body: Center(
         child: AnimatedTextKit(
           animatedTexts: [
@@ -35,7 +35,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
               "CV2CAREER",
               textStyle: const TextStyle(
                 fontSize: 25,
-                color: Colors.white,
+                color: kPrimaryColor,
                 fontFamily: "Rubik",
               ),
               speed: const Duration(milliseconds: 300),
