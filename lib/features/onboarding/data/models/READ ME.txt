@@ -1,0 +1,2 @@
+models folder contains all models that can be used in this screen.
+definition of model: all data (not part of data) that retrieved using API.

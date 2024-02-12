@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "748079990514",
+    "project_id": "cv2careerauth",
+    "storage_bucket": "cv2careerauth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748079990514:android:078019000e5cb36a86326b",
+        "android_client_info": {
+          "package_name": "com.example.gp_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4P3lVw6HFlmRfs037qLjxPw9XPiikmDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748079990514:android:183f8ab825e79e5886326b",
+        "android_client_info": {
+          "package_name": "com.example.gp_app_2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4P3lVw6HFlmRfs037qLjxPw9XPiikmDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
