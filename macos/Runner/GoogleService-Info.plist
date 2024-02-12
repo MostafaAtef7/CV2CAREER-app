@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyC2tXg8z-9fvNR-tS3pc56KEXtpogiNxCk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>748079990514</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.gpApp.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>cv2careerauth</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cv2careerauth.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:748079990514:ios:f272d0bf9cfe5aeb86326b</string>
+</dict>
+</plist>

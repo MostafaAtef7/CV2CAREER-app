@@ -20,7 +20,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   void navigatToHomeView() {
     Future.delayed(const Duration(seconds: 5), () {
-      GoRouter.of(context).push(AppRouter.homeView);
+      GoRouter.of(context).push(AppRouter.onboarding);
     });
   }
 

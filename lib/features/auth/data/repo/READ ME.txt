@@ -1,0 +1,4 @@
+repo (repository) folder resposible of fetch data from API
+contains two files
+first file: contain abstract class that has functions (without implementation).
+second file: contains implementation of these functions. 
