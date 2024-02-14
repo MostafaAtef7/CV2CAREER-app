@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gp_app/core/widgets/custom_app_bar.dart';
 
-import 'functions/bottom_bar_select_page.dart';
-import 'widgets/bottom_bar.dart';
+import '../../../../core/utils/functions/bottom_bar_select_page.dart';
+import '../../../../core/widgets/bottom_bar.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});

@@ -1,8 +1,11 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gp_app/features/auth/presentation/manager/cubits/auth_cubit/auth_cubit.dart';
 import 'package:gp_app/features/auth/presentation/view/login.dart';
 import 'package:gp_app/features/auth/presentation/view/signup.dart';
 import 'package:gp_app/features/job_view_details/presentation/view/job_view_details.dart';
 import 'package:gp_app/features/onboarding/presentation/view/onboarding.dart';
+import 'package:gp_app/features/setting/presentantion/setting_view.dart';
 import 'package:gp_app/features/splash/presentation/view/splash_view.dart';
 
 import '../../../features/home/presentation/view/home_view.dart';
@@ -11,8 +14,9 @@ abstract class AppRouter {
   static const String homeView = "/homeView";
   static const String jobViewDetails = "/jobViewDetails";
   static const String onboarding = "/onboarding";
-  static const String login = "/auth/login.dart";
-  static const String signup = "/auth/signuo.dart";
+  static const String login = "/login";
+  static const String signup = "/signuo";
+  static const String setting = "/setting";
 
   static final router = GoRouter(
     routes: [
@@ -35,11 +39,21 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: login,
-        builder: (ctx, state) => LoginPage(),
+        builder: (ctx, state) => BlocProvider(
+          create: (context) => AuthCubit(),
+          child: const LoginPage(),
+        ),
       ),
       GoRoute(
         path: signup,
-        builder: (ctx, state) => SignUpPage(),
+        builder: (ctx, state) => BlocProvider(
+          create: (context) => AuthCubit(),
+          child: SignUpPage(),
+        ),
+      ),
+            GoRoute(
+        path: setting,
+        builder: (ctx, state) => const Setting(),
       ),
     ],
   );
