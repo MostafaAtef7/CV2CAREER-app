@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quickalert/quickalert.dart';
 
-import '../../../../../constants.dart';
+import '../../../constants.dart';
 
 void showQuickAlert(
     {required BuildContext context,

@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gp_app/core/utils/classes/app_routers.dart';
+import 'package:gp_app/core/widgets/custom_buttom.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 
 import '../../../../constants.dart';
 import '../manager/cubits/auth_cubit/auth_cubit.dart';
-import 'widgets/custom_button.dart';
 import 'widgets/custom_text.dart';
 import 'widgets/custom_text_form_field.dart';
-import 'widgets/show_quick_alert.dart';
+import '../../../../core/utils/functions/show_quick_alert.dart';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({super.key});
@@ -99,7 +99,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             if (value!.isEmpty) {
                               return 'Field is required';
                             }
-                          },
+                            return null;
+                          }, controller: null,
                         ),
                         const CustomText(text: 'Email'),
                         CustomTextFormField(
@@ -119,7 +120,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                 .hasMatch(value)) {
                               return 'Invalid Email';
                             }
-                          },
+                            return null;
+                          }, controller: null,
                         ),
                         const CustomText(text: 'Password'),
                         CustomTextFormField(
@@ -139,6 +141,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             if (value.length < 6) {
                               return 'Password must be at least 6 characters';
                             }
+                            return null;
                           },
                         ),
                         const CustomText(text: 'Confirm Password'),
@@ -161,6 +164,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 confirmPasswordController.text) {
                               return 'Password doesn\'t match';
                             }
+                            return null;
                           },
                         ),
                         Row(
@@ -191,39 +195,47 @@ class _SignUpPageState extends State<SignUpPage> {
                             const Text('Job Seeker'),
                           ],
                         ),
-                        CustomButton(
-                          text: 'Sign Up ',
-                          onTap: () {
-                            if (signupKey.currentState!.validate()) {
-                              BlocProvider.of<AuthCubit>(context).signUp(
-                                emailAddress: emailAddress!,
-                                password: password!,
-                              );
-                            }
-                          },
+                        Padding(
+                          padding: const EdgeInsets.all(14.0),
+                          child: CustomButton(
+                            text: 'Sign Up ',
+                            width: 250,
+                            height: 50,
+                            onPressed: () {
+                              if (signupKey.currentState!.validate()) {
+                                BlocProvider.of<AuthCubit>(context).signUp(
+                                  emailAddress: emailAddress!,
+                                  password: password!,
+                                );
+                              }
+                            },
+                          ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'Already have an account ? ',
-                              style: TextStyle(
-                                color: Colors.black,
-                                // fontSize: 16,
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                GoRouter.of(context).push(AppRouter.login);
-                              },
-                              child: const Text(
-                                'Login',
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'Already have an account ? ',
                                 style: TextStyle(
-                                  color: kPrimaryColor,
+                                  color: Colors.black,
+                                  // fontSize: 16,
                                 ),
                               ),
-                            ),
-                          ],
+                              GestureDetector(
+                                onTap: () {
+                                  GoRouter.of(context).push(AppRouter.login);
+                                },
+                                child: const Text(
+                                  'Login',
+                                  style: TextStyle(
+                                    color: kPrimaryColor,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         )
                       ],
                     )

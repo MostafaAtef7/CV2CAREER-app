@@ -2,22 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gp_app/core/utils/classes/app_routers.dart';
+import 'package:gp_app/core/widgets/custom_buttom.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 
 import '../../../../constants.dart';
 import '../manager/cubits/auth_cubit/auth_cubit.dart';
-import 'widgets/custom_button.dart';
+
 import 'widgets/custom_text.dart';
 import 'widgets/custom_text_form_field.dart';
-import 'widgets/show_quick_alert.dart';
+import '../../../../core/utils/functions/show_quick_alert.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   String? emailAddress;
+
   String? password;
+
   GlobalKey<FormState> loginKey = GlobalKey();
+
   bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
@@ -75,9 +86,11 @@ class LoginPage extends StatelessWidget {
                               .hasMatch(value)) {
                             return 'Invalid Email';
                           }
+                          return null;
                         },
                         hintText: 'Your email address',
                         suffixIcon: const Icon(Icons.mail),
+                        controller: null,
                       ),
                       const CustomText(text: 'Password'),
                       CustomTextFormField(
@@ -91,19 +104,26 @@ class LoginPage extends StatelessWidget {
                           if (value!.isEmpty) {
                             return 'Field is required';
                           }
+                          return null;
                         },
                         hintText: '**********',
                         suffixIcon: const Icon(Icons.lock),
+                        controller: null,
                       ),
-                      CustomButton(
-                        text: 'Login',
-                        onTap: () {
-                          if (loginKey.currentState!.validate()) {
-                            BlocProvider.of<AuthCubit>(context).login(
-                                emailAddress: emailAddress!,
-                                password: password!);
-                          }
-                        },
+                      Padding(
+                        padding: const EdgeInsets.all(14.0),
+                        child: CustomButton(
+                          text: 'Login',
+                          width: 250,
+                          height: 50,
+                          onPressed: () {
+                            if (loginKey.currentState!.validate()) {
+                              BlocProvider.of<AuthCubit>(context).login(
+                                  emailAddress: emailAddress!,
+                                  password: password!);
+                            }
+                          },
+                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
