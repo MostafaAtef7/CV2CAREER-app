@@ -51,7 +51,7 @@ abstract class AppRouter {
           child: SignUpPage(),
         ),
       ),
-            GoRoute(
+      GoRoute(
         path: setting,
         builder: (ctx, state) => const Setting(),
       ),
