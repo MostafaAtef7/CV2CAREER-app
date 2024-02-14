@@ -9,11 +9,11 @@ class JobViewDetailsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(bottom: 8.0),
+    return  Padding(
+      padding: const EdgeInsets.only(bottom: 8.0),
       child: Stack(
         children: [
-          Column(
+          const Column(
             children: [
               AboveContainer(),
               Expanded(
@@ -102,6 +102,8 @@ class JobViewDetailsBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomButton(
+                  onPressed: (){},
+                  text: "Apply",
                   width: 100,
                   height: 40,
                 ),

@@ -4,12 +4,14 @@ import '../../constants.dart';
 
 class CustomButton extends StatelessWidget {
   final double width, height;
-  const CustomButton({super.key, required this.width, required this.height});
+  final String text;
+  final Function()? onPressed;
+  const CustomButton({super.key, required this.width, required this.height, required this.text, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onPressed,
       style: ButtonStyle(
         minimumSize: MaterialStateProperty.all<Size>(Size(width, height)),
         backgroundColor: MaterialStateProperty.all<Color>(kPrimaryColor),
@@ -20,11 +22,13 @@ class CustomButton extends StatelessWidget {
           ),
         ),
       ),
-      child: const Text(
-        "Apply",
-        style: TextStyle(
+      child: Text(
+        text,
+        style: const TextStyle(
           color: Colors.white,
           fontFamily: "Rubik",
+          fontWeight: FontWeight.w400,
+          fontSize: 17,
         ),
       ),
     );
