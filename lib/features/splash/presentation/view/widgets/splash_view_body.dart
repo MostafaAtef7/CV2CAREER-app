@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gp_app/constants.dart';
@@ -19,8 +20,10 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   }
 
   void navigatToHomeView() {
-    Future.delayed(const Duration(seconds: 5), () {
-      GoRouter.of(context).push(AppRouter.onboarding);
+    Future.delayed(const Duration(seconds: 5), () {  
+      FirebaseAuth.instance.currentUser == null
+            ? GoRouter.of(context).pushReplacement(AppRouter.onboarding)
+            : GoRouter.of(context).pushReplacement(AppRouter.homeView);
     });
   }
 
