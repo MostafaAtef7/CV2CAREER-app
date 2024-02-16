@@ -11,10 +11,10 @@ import '../manager/auth_cubits/auth_cubit.dart';
 import 'widgets/custom_text.dart';
 import 'widgets/custom_text_form_field.dart';
 import '../../../../core/utils/functions/show_quick_alert.dart';
+import 'widgets/signup_tail.dart';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({super.key});
-  static String id = 'signup';
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -100,7 +100,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               return 'Field is required';
                             }
                             return null;
-                          }, controller: null,
+                          },
+                          controller: null,
                         ),
                         const CustomText(text: 'Email'),
                         CustomTextFormField(
@@ -121,7 +122,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               return 'Invalid Email';
                             }
                             return null;
-                          }, controller: null,
+                          },
+                          controller: null,
                         ),
                         const CustomText(text: 'Password'),
                         CustomTextFormField(
@@ -211,32 +213,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             },
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 10.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                'Already have an account ? ',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  // fontSize: 16,
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  GoRouter.of(context).push(AppRouter.login);
-                                },
-                                child: const Text(
-                                  'Login',
-                                  style: TextStyle(
-                                    color: kPrimaryColor,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
+                        const SignUpTail()
                       ],
                     )
                   ],

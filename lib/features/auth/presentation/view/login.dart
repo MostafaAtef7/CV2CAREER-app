@@ -12,6 +12,7 @@ import '../manager/auth_cubits/auth_cubit.dart';
 import 'widgets/custom_text.dart';
 import 'widgets/custom_text_form_field.dart';
 import '../../../../core/utils/functions/show_quick_alert.dart';
+import 'widgets/login_tail.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -122,29 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                           },
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'don\'t have an account ? ',
-                            style: TextStyle(
-                              color: Colors.black,
-                              // fontSize: 16,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              GoRouter.of(context).push(AppRouter.signup);
-                            },
-                            child: const Text(
-                              'Sign Up',
-                              style: TextStyle(
-                                color: kPrimaryColor,
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
+                      const LoginTail()
                     ],
                   ),
                 ]),
