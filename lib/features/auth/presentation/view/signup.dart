@@ -14,7 +14,7 @@ import '../../../../core/utils/functions/show_quick_alert.dart';
 import 'widgets/signup_tail.dart';
 
 class SignUpPage extends StatefulWidget {
-  SignUpPage({super.key});
+  const SignUpPage({super.key});
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
