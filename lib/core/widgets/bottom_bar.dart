@@ -13,8 +13,9 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<BottomBar> {
   final items = const [
-    Icon(Icons.work, color: Colors.white),
+    Icon(Icons.public, color: Colors.white),
     Icon(Icons.edit_document, color: Colors.white),
+    Icon(Icons.work, color: Colors.white),
     Icon(Icons.manage_accounts_sharp, color:Colors.white)
   ];
 
@@ -24,7 +25,7 @@ class _BottomBarState extends State<BottomBar> {
       items: items,
       index: widget.index,
       onTap: widget.onTap,
-      height: 60,
+      height: 50,
       animationDuration: const Duration(milliseconds: 300),
       backgroundColor: Colors.transparent,
       color: kPrimaryColor,

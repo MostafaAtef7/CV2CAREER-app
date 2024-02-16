@@ -7,8 +7,8 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 
 import '../../../../constants.dart';
-import '../manager/cubits/auth_cubit/auth_cubit.dart';
 
+import '../manager/auth_cubits/auth_cubit.dart';
 import 'widgets/custom_text.dart';
 import 'widgets/custom_text_form_field.dart';
 import '../../../../core/utils/functions/show_quick_alert.dart';
@@ -36,13 +36,7 @@ class _LoginPageState extends State<LoginPage> {
         if (state is LoginLoading) {
           isLoading = true;
         } else if (state is LoginSuccess) {
-          showQuickAlert(
-              context: context,
-              quickAlertType: QuickAlertType.success,
-              onConfirmBtnTap: () {
-                GoRouter.of(context).push(AppRouter.homeView);
-              },
-              text: 'Logined Successfully !');
+          GoRouter.of(context).push(AppRouter.homeView);
           isLoading = false;
         } else if (state is LoginFailure) {
           showQuickAlert(
@@ -55,6 +49,9 @@ class _LoginPageState extends State<LoginPage> {
       builder: (context, state) {
         return Scaffold(
           body: ModalProgressHUD(
+            progressIndicator: const CircularProgressIndicator(
+              color: kPrimaryColor,
+            ),
             inAsyncCall: isLoading,
             child: Padding(
               padding: const EdgeInsets.only(top: 16),

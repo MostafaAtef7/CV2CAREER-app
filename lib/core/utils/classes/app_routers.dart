@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gp_app/features/auth/presentation/manager/cubits/auth_cubit/auth_cubit.dart';
+import 'package:gp_app/features/auth/presentation/manager/auth_cubits/auth_cubit.dart';
 import 'package:gp_app/features/auth/presentation/view/login.dart';
 import 'package:gp_app/features/auth/presentation/view/signup.dart';
 import 'package:gp_app/features/job_view_details/presentation/view/job_view_details.dart';
@@ -51,7 +51,7 @@ abstract class AppRouter {
           child: SignUpPage(),
         ),
       ),
-            GoRoute(
+      GoRoute(
         path: setting,
         builder: (ctx, state) => const Setting(),
       ),

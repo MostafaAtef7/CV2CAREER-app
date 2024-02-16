@@ -7,7 +7,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 
 import '../../../../constants.dart';
-import '../manager/cubits/auth_cubit/auth_cubit.dart';
+import '../manager/auth_cubits/auth_cubit.dart';
 import 'widgets/custom_text.dart';
 import 'widgets/custom_text_form_field.dart';
 import '../../../../core/utils/functions/show_quick_alert.dart';
