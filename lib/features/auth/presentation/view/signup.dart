@@ -40,6 +40,12 @@ class _SignUpPageState extends State<SignUpPage> {
   bool isLoading = false;
 
   GlobalKey<FormState> signupKey = GlobalKey();
+  @override
+  void dispose() {
+    super.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
