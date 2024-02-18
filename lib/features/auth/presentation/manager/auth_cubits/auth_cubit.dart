@@ -77,6 +77,7 @@ class AuthCubit extends Cubit<AuthState> {
     sharedPreferences.setString('emailAddress', emailAddress);
     sharedPreferences.setString('password', password);
     sharedPreferences.setString('userType', userType);
+    print('saves Sucess');
   }
 
   void retrieveData() async {
