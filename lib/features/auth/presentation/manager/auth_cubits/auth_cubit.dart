@@ -1,15 +1,20 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gp_app/core/utils/classes/app_routers.dart';
 import 'package:meta/meta.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
-  String? email;
+
+  String? userName;
+  String? emailAddress;
   String? password;
-  // String userType = 'HR';
-  // String? userName;
+  String? userType;
 
   void login({required String emailAddress, required String password}) async {
     emit(LoginLoading());
@@ -31,10 +36,11 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  void signUp({
-    required String emailAddress,
-    required String password,
-  }) async {
+  void signUp(
+      {required String emailAddress,
+      required String password,
+      required String userName,
+      required String userType}) async {
     emit(RegisterLoading());
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -42,6 +48,11 @@ class AuthCubit extends Cubit<AuthState> {
         password: password,
       );
       emit(RegisterSuccess());
+      saveSignUpData(
+          emailAddress: emailAddress,
+          password: password,
+          userName: userName,
+          userType: userType);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         emit(RegisterFailure(
@@ -53,6 +64,41 @@ class AuthCubit extends Cubit<AuthState> {
         emit(RegisterFailure(
             errorMessage: 'Something wrong , please try again !'));
       }
+    }
+  }
+
+  void saveSignUpData(
+      {required String emailAddress,
+      required String password,
+      required String userName,
+      required String userType}) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString('userName', userName);
+    sharedPreferences.setString('emailAddress', emailAddress);
+    sharedPreferences.setString('password', password);
+    sharedPreferences.setString('userType', userType);
+    print('saves Sucess');
+  }
+
+  void retrieveData() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    userName = sharedPreferences.getString('userName');
+    emailAddress = sharedPreferences.getString('emailAddress');
+    password = sharedPreferences.getString('password');
+    userType = sharedPreferences.getString('userType');
+    print('userName : $userName');
+    print('email $emailAddress');
+    print('password $password');
+    print('userType $userType');
+  }
+
+  void signOut(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    if (context.mounted) {
+      while (context.canPop()) {
+        GoRouter.of(context).pop();
+      }
+      GoRouter.of(context).pushReplacement(AppRouter.login);
     }
   }
 }

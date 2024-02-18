@@ -5,8 +5,6 @@ import 'package:gp_app/core/utils/classes/app_routers.dart';
 import 'package:gp_app/features/onboarding/presentation/view/widgets/dot_indicator.dart';
 import 'package:gp_app/features/onboarding/presentation/view/widgets/onboard_content.dart';
 
-import '../../data/models/onboarding_model.dart';
-
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
   static String id = 'onboadingPage';
@@ -16,30 +14,8 @@ class OnboardingPage extends StatefulWidget {
 }
 
 class _OnboardingPageState extends State<OnboardingPage> {
-  List<OnboardingModel> onboardingContentList = [
-    OnboardingModel(
-        image: 'assets/images/Resume.png',
-        title: 'Welcome to \nCV2Career ! Let’s start',
-        description: ''),
-    OnboardingModel(
-        image: 'assets/images/Organize_resume.png',
-        title: 'ATS-Friendly Format',
-        description:
-            'Organize your CV by convert it from traditional cv to ats friendly format .'),
-    OnboardingModel(
-        image: 'assets/images/career_progress_ivdb.png',
-        title: 'Job Recommendation',
-        description:
-            'Find your perfect job title based on your skills and experience .'),
-    OnboardingModel(
-        image: 'assets/images/Filter-bro.png',
-        title: 'CV Filteration',
-        description:
-            'Help HR find suitable job applicant by filtering cvs and give score to each resume of Job applicant')
-  ];
   late PageController _pageController;
   int pageIndex = 0;
-  // bool isLastPage = false;
   @override
   void initState() {
     _pageController = PageController(initialPage: 0);

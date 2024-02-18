@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gp_app/core/utils/classes/app_routers.dart';
+import 'package:gp_app/core/utils/classes/assets.dart';
 import 'package:gp_app/core/widgets/custom_buttom.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:quickalert/models/quickalert_type.dart';
@@ -12,6 +13,7 @@ import '../manager/auth_cubits/auth_cubit.dart';
 import 'widgets/custom_text.dart';
 import 'widgets/custom_text_form_field.dart';
 import '../../../../core/utils/functions/show_quick_alert.dart';
+import 'widgets/login_tail.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -61,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                   Column(
                     children: [
                       Image.asset(
-                        'assets/images/login.png',
+                        AssetsData.loginImage,
                         height: 250,
                       ),
                       const SizedBox(
@@ -122,29 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                           },
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'don\'t have an account ? ',
-                            style: TextStyle(
-                              color: Colors.black,
-                              // fontSize: 16,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              GoRouter.of(context).push(AppRouter.signup);
-                            },
-                            child: const Text(
-                              'Sign Up',
-                              style: TextStyle(
-                                color: kPrimaryColor,
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
+                      const LoginTail()
                     ],
                   ),
                 ]),

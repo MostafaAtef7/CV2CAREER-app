@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gp_app/core/utils/classes/app_routers.dart';
+import 'package:gp_app/core/utils/classes/assets.dart';
 import 'package:gp_app/core/widgets/custom_buttom.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:quickalert/models/quickalert_type.dart';
@@ -11,10 +12,10 @@ import '../manager/auth_cubits/auth_cubit.dart';
 import 'widgets/custom_text.dart';
 import 'widgets/custom_text_form_field.dart';
 import '../../../../core/utils/functions/show_quick_alert.dart';
+import 'widgets/signup_tail.dart';
 
 class SignUpPage extends StatefulWidget {
-  SignUpPage({super.key});
-  static String id = 'signup';
+  const SignUpPage({super.key});
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -40,6 +41,12 @@ class _SignUpPageState extends State<SignUpPage> {
   bool isLoading = false;
 
   GlobalKey<FormState> signupKey = GlobalKey();
+  @override
+  void dispose() {
+    super.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +64,6 @@ class _SignUpPageState extends State<SignUpPage> {
               text: 'Registered Successfully !');
 
           isLoading = false;
-          GoRouter.of(context).push(AppRouter.homeView);
         } else if (state is RegisterFailure) {
           showQuickAlert(
               context: context,
@@ -79,7 +85,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     Column(
                       children: [
                         Image.asset(
-                          'assets/images/signup.png',
+                          AssetsData.registerImage,
                           height: 150,
                         ),
                         const SizedBox(
@@ -100,7 +106,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               return 'Field is required';
                             }
                             return null;
-                          }, controller: null,
+                          },
+                          controller: null,
                         ),
                         const CustomText(text: 'Email'),
                         CustomTextFormField(
@@ -121,7 +128,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               return 'Invalid Email';
                             }
                             return null;
-                          }, controller: null,
+                          },
+                          controller: null,
                         ),
                         const CustomText(text: 'Password'),
                         CustomTextFormField(
@@ -204,39 +212,15 @@ class _SignUpPageState extends State<SignUpPage> {
                             onPressed: () {
                               if (signupKey.currentState!.validate()) {
                                 BlocProvider.of<AuthCubit>(context).signUp(
-                                  emailAddress: emailAddress!,
-                                  password: password!,
-                                );
+                                    emailAddress: emailAddress!,
+                                    password: password!,
+                                    userName: userName!,
+                                    userType: groupValue!);
                               }
                             },
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 10.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                'Already have an account ? ',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  // fontSize: 16,
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  GoRouter.of(context).push(AppRouter.login);
-                                },
-                                child: const Text(
-                                  'Login',
-                                  style: TextStyle(
-                                    color: kPrimaryColor,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
+                        const SignUpTail()
                       ],
                     )
                   ],
