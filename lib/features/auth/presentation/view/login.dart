@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gp_app/core/utils/classes/app_routers.dart';
+import 'package:gp_app/core/utils/classes/assets.dart';
 import 'package:gp_app/core/widgets/custom_buttom.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:quickalert/models/quickalert_type.dart';
@@ -62,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                   Column(
                     children: [
                       Image.asset(
-                        'assets/images/login.png',
+                        AssetsData.loginImage,
                         height: 250,
                       ),
                       const SizedBox(
