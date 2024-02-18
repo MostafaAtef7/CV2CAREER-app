@@ -10,12 +10,12 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        print('__User is currently signed out!__');
-      } else {
-        print('__User is signed in!__');
-      }
-    });
+    if (user == null) {
+      print('__User is currently signed out!__');
+    } else {
+      print('__User is signed in!__');
+    }
+  });
   runApp(const GpApp());
 }
 

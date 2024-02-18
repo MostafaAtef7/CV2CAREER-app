@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'features/onboarding/data/models/onboarding_model.dart';
 
 const Color kPrimaryColor = Color(0xff03D802);
-List<OnboardingModel> onboardingContentList = [
+final List<OnboardingModel> onboardingContentList = [
   OnboardingModel(
       image: 'assets/images/Resume.png',
       title: 'Welcome to \nCV2Career ! Let’s start',

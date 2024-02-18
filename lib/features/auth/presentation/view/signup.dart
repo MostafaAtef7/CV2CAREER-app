@@ -212,9 +212,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             onPressed: () {
                               if (signupKey.currentState!.validate()) {
                                 BlocProvider.of<AuthCubit>(context).signUp(
-                                  emailAddress: emailAddress!,
-                                  password: password!,
-                                );
+                                    emailAddress: emailAddress!,
+                                    password: password!,
+                                    userName: userName!,
+                                    userType: groupValue!);
                               }
                             },
                           ),

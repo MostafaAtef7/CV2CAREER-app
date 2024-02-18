@@ -12,9 +12,9 @@ Widget selectPageFromBottomBar({index = 0}) {
     case 1:
       widget = const Placeholder();
       break;
-    case 2:
-      widget = const Placeholder();
-      break;
+    // case 2:
+    //   widget = const Placeholder();
+    //   break;
     default:
       widget = const Setting();
   }

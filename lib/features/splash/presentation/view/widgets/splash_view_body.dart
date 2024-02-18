@@ -20,10 +20,10 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   }
 
   void navigatToHomeView() {
-    Future.delayed(const Duration(seconds: 5), () {  
+    Future.delayed(const Duration(seconds: 5), () {
       FirebaseAuth.instance.currentUser == null
-            ? GoRouter.of(context).pushReplacement(AppRouter.onboarding)
-            : GoRouter.of(context).pushReplacement(AppRouter.homeView);
+          ? GoRouter.of(context).pushReplacement(AppRouter.onboarding)
+          : GoRouter.of(context).pushReplacement(AppRouter.homeView);
     });
   }
 

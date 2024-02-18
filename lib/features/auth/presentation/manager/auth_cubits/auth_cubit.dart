@@ -1,15 +1,17 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
-  String? email;
+
+  String? userName;
+  String? emailAddress;
   String? password;
-  // String userType = 'HR';
-  // String? userName;
+  String? userType;
 
   void login({required String emailAddress, required String password}) async {
     emit(LoginLoading());
@@ -31,10 +33,11 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  void signUp({
-    required String emailAddress,
-    required String password,
-  }) async {
+  void signUp(
+      {required String emailAddress,
+      required String password,
+      required String userName,
+      required String userType}) async {
     emit(RegisterLoading());
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -42,6 +45,12 @@ class AuthCubit extends Cubit<AuthState> {
         password: password,
       );
       emit(RegisterSuccess());
+      saveSignUpData(
+          emailAddress: emailAddress,
+          password: password,
+          userName: userName,
+          userType: userType);
+      retrieveData();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         emit(RegisterFailure(
@@ -54,5 +63,29 @@ class AuthCubit extends Cubit<AuthState> {
             errorMessage: 'Something wrong , please try again !'));
       }
     }
+  }
+
+  void saveSignUpData(
+      {required String emailAddress,
+      required String password,
+      required String userName,
+      required String userType}) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString('userName', userName);
+    sharedPreferences.setString('emailAddress', emailAddress);
+    sharedPreferences.setString('password', password);
+    sharedPreferences.setString('userType', userType);
+  }
+
+  void retrieveData() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    userName = sharedPreferences.getString('userName');
+    emailAddress = sharedPreferences.getString('emailAddress');
+    password = sharedPreferences.getString('password');
+    userType = sharedPreferences.getString('userType');
+    print('userName : $userName');
+    print('email $emailAddress');
+    print('password $password');
+    print('userType $userType');
   }
 }
