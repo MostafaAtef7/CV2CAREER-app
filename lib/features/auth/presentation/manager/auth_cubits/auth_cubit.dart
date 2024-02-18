@@ -1,5 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gp_app/core/utils/classes/app_routers.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -50,7 +53,6 @@ class AuthCubit extends Cubit<AuthState> {
           password: password,
           userName: userName,
           userType: userType);
-      retrieveData();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         emit(RegisterFailure(
@@ -87,5 +89,15 @@ class AuthCubit extends Cubit<AuthState> {
     print('email $emailAddress');
     print('password $password');
     print('userType $userType');
+  }
+
+  void signOut(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    if (context.mounted) {
+      while (context.canPop()) {
+        GoRouter.of(context).pop();
+      }
+      GoRouter.of(context).pushReplacement(AppRouter.login);
+    }
   }
 }

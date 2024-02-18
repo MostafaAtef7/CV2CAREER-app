@@ -39,22 +39,16 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: login,
-        builder: (ctx, state) => BlocProvider(
-          create: (context) => AuthCubit(),
-          child: const LoginPage(),
-        ),
+        builder: (ctx, state) => const LoginPage(),
       ),
       GoRoute(
         path: signup,
-        builder: (ctx, state) => BlocProvider(
-          create: (context) => AuthCubit(),
-          child: const SignUpPage(),
-        ),
+        builder: (ctx, state) => const SignUpPage(),
       ),
       GoRoute(
         path: setting,
         builder: (ctx, state) => const Setting(),
-      ),
+      )
     ],
   );
 }
