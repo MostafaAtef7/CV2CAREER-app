@@ -63,7 +63,6 @@ class _SignUpPageState extends State<SignUpPage> {
               text: 'Registered Successfully !');
 
           isLoading = false;
-          GoRouter.of(context).push(AppRouter.homeView);
         } else if (state is RegisterFailure) {
           showQuickAlert(
               context: context,
