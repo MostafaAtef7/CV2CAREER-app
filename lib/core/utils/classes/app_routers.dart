@@ -1,14 +1,13 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gp_app/features/auth/presentation/manager/auth_cubits/auth_cubit.dart';
+import 'package:gp_app/core/widgets/bottom_bar.dart';
 import 'package:gp_app/features/auth/presentation/view/login.dart';
 import 'package:gp_app/features/auth/presentation/view/signup.dart';
+import 'package:gp_app/features/home/presentation/view/home_view.dart';
 import 'package:gp_app/features/job_view_details/presentation/view/job_view_details.dart';
 import 'package:gp_app/features/onboarding/presentation/view/onboarding.dart';
 import 'package:gp_app/features/setting/presentantion/setting_view.dart';
 import 'package:gp_app/features/splash/presentation/view/splash_view.dart';
-
-import '../../../features/home/presentation/view/home_view.dart';
+import 'package:gp_app/features/uploadCV/presentation/view/uploadcv_view.dart';
 
 abstract class AppRouter {
   static const String homeView = "/homeView";
@@ -17,6 +16,8 @@ abstract class AppRouter {
   static const String login = "/login";
   static const String signup = "/signuo";
   static const String setting = "/setting";
+  static const String bottomBar = "/BottomBar";
+  static const String uploadCV = "/uploadcv_View";
 
   static final router = GoRouter(
     routes: [
@@ -48,7 +49,15 @@ abstract class AppRouter {
       GoRoute(
         path: setting,
         builder: (ctx, state) => const Setting(),
-      )
+      ),
+      GoRoute(
+        path: bottomBar,
+        builder: (ctx, state) => BottomBar(),
+      ),
+      GoRoute(
+        path: uploadCV,
+        builder: (ctx, state) => uploadcv_View(),
+      ),
     ],
   );
 }

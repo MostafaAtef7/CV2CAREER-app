@@ -1,17 +1,246 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gp_app/core/utils/classes/app_routers.dart';
+import 'package:gp_app/core/utils/classes/assets.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'dart:io';
+import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:swipeable_button_view/swipeable_button_view.dart';
 
 class uploadcv_view_body extends StatefulWidget {
   const uploadcv_view_body({super.key});
 
   @override
-  State<uploadcv_view_body> createState() => _uploadcv_view_bodyState();
+  State<uploadcv_view_body> createState() => _uploadCvState();
 }
 
-class _uploadcv_view_bodyState extends State<uploadcv_view_body> {
+var isClick = 0;
+var isFinished = false;
+
+class _uploadCvState extends State<uploadcv_view_body> {
+  uploadCV() async {
+    print("in Fun");
+    // Allow the user to pick a file
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf', 'docx'],
+    );
+
+    if (result != null) {
+      setState(() {
+        isClick = 1;
+      });
+      // Get the file path
+      String filePath = result.files.single.path!;
+
+      // Replace 'YOUR_API_ENDPOINT' with the actual endpoint URL
+
+      // var url = Uri.parse("http://192.168.1.9:5000/upload");
+      var url = Uri.parse("");
+      // Create a multipart request
+      var request = http.MultipartRequest('POST', url);
+
+      // Add the file to the request
+      var multipartFile = await http.MultipartFile.fromPath(
+        'file',
+        filePath,
+        contentType: MediaType(
+            'application', 'octet-stream'), // Adjust content type if needed
+      );
+
+      request.files.add(multipartFile);
+
+      //_______________________ Test
+      Future.delayed(Duration(seconds: 7), () {
+        setState(
+          () {
+            isClick = 2; // Set success state
+          },
+        );
+      });
+
+      //_______________________
+
+      // Send the request
+      var response = await request.send();
+
+      if (response.statusCode == 200) {
+        // File uploaded successfully
+        var responseBody = await response.stream.bytesToString();
+
+        print(responseBody); // Print the response from the server
+
+        setState(() {
+          isClick = 2; // Set success state
+        });
+      } else {
+        // Error uploading file
+        print('Failed to upload file');
+        setState(() {
+          isClick = 0; // Reset button state
+        });
+      }
+    } else {
+      // User canceled the file picking
+      print('No file selected.');
+      print("*********************");
+    }
+
+    // setState(() {
+    //   isClick = 2;
+    // });
+    // print(isClick);
+    // print("_________________");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text("upload"),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.only(top: 70),
+              child: Column(
+                children: [
+                  Image.asset(
+                    AssetsData.uploadCVImage,
+                    width: 200,
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 40, top: 40),
+                    child: Text("Upload Your CV",
+                        style: TextStyle(fontWeight: FontWeight.w800)),
+                  ),
+                ],
+              ),
+            ),
+            Column(
+              children: <Widget>[
+                if (isClick == 0)
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: 40,
+                      ),
+                      SizedBox(
+                          height: 80,
+                          width: 270,
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    height: 40,
+                                    width: 250,
+                                    margin: EdgeInsets.only(top: 20),
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(25)),
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Color(0xFF78EA79),
+                                          Color(0xFF3FC3AE)
+                                        ],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.topRight,
+                                        stops: [0.0, 0.9],
+                                      ),
+                                    ),
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.transparent,
+                                          shadowColor: Colors.transparent,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(25),
+                                            ),
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          uploadCV();
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Icon(
+                                              Icons.drive_folder_upload,
+                                              color: Colors.white,
+                                            ),
+                                            Text(
+                                              "Select CV To Upload",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            )
+                                          ],
+                                        )),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )),
+                    ],
+                  )
+                else if (isClick == 1)
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Center(
+                        child: LoadingAnimationWidget.inkDrop(
+                          size: 30,
+                          color: Color(0xFF3FC3AE),
+                        ),
+                      ),
+                    ],
+                  )
+                else if (isClick == 2)
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: 90,
+                      left: 70,
+                      right: 70,
+                    ),
+                    child: SwipeableButtonView(
+                      disableColor: Color(0xFF3FC3AE),
+                      buttonText: 'Continue',
+                      buttonWidget: Container(
+                        child: Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      activeColor: Color(0xFF3FC3AE),
+                      isFinished: isFinished,
+                      onWaitingProcess: () {
+                        Future.delayed(Duration(seconds: 2), () {
+                          setState(() {
+                            isFinished = true;
+                          });
+                        });
+                      },
+                      onFinish: () async {
+                        GoRouter.of(context).push(AppRouter.bottomBar);
+                        setState(() {
+                          isFinished = false;
+                        });
+                      },
+                    ),
+                  )
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -3,7 +3,8 @@ import 'package:gp_app/core/utils/classes/assets.dart';
 
 import 'features/onboarding/data/models/onboarding_model.dart';
 
-const Color kPrimaryColor = Color(0xff03D802);
+const Color kPrimaryColor = Color(0XFF3FC3AE);
+
 final List<OnboardingModel> onboardingContentList = [
   OnboardingModel(
       image: AssetsData.onboardingImage1,
