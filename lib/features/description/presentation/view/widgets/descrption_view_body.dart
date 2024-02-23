@@ -4,14 +4,14 @@ import 'package:gp_app/core/widgets/defaultbutton.dart';
 import 'package:gp_app/features/description/presentation/view/widgets/text.dart';
 import 'package:readmore/readmore.dart';
 
-class descrption_view_body extends StatefulWidget {
-  const descrption_view_body({super.key});
+class DescrptionViewBody extends StatefulWidget {
+  const DescrptionViewBody({super.key});
 
   @override
-  State<descrption_view_body> createState() => _descriptionState();
+  State<DescrptionViewBody> createState() => _descriptionState();
 }
 
-class _descriptionState extends State<descrption_view_body> {
+class _descriptionState extends State<DescrptionViewBody> {
   List<String> options = [
     "Show All",
     "Description",
