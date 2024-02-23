@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gp_app/constants.dart';
 import 'package:gp_app/core/utils/classes/app_routers.dart';
 import 'package:gp_app/core/utils/classes/assets.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:file_picker/file_picker.dart';
@@ -98,13 +98,13 @@ class _uploadCvState extends State<uploadcv_view_body> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(top: 70),
+              padding: const EdgeInsets.only(top: 70),
               child: Column(
                 children: [
                   Image.asset(
@@ -112,8 +112,8 @@ class _uploadCvState extends State<uploadcv_view_body> {
                     width: 200,
                   ),
                   Container(
-                    margin: EdgeInsets.only(bottom: 40, top: 40),
-                    child: Text("Upload Your CV",
+                    margin: const EdgeInsets.only(bottom: 40, top: 40),
+                    child: const Text("Upload Your CV",
                         style: TextStyle(fontWeight: FontWeight.w800)),
                   ),
                 ],
@@ -124,9 +124,7 @@ class _uploadCvState extends State<uploadcv_view_body> {
                 if (isClick == 0)
                   Column(
                     children: [
-                      SizedBox(
-                        height: 40,
-                      ),
+                      const SizedBox(height: 40),
                       SizedBox(
                           height: 80,
                           width: 270,
@@ -139,14 +137,11 @@ class _uploadCvState extends State<uploadcv_view_body> {
                                     height: 40,
                                     width: 250,
                                     margin: EdgeInsets.only(top: 20),
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(25)),
                                       gradient: LinearGradient(
-                                        colors: [
-                                          Color(0xFF78EA79),
-                                          Color(0xFF3FC3AE)
-                                        ],
+                                        colors: [kSecondColor, kPrimaryColor],
                                         begin: Alignment.topLeft,
                                         end: Alignment.topRight,
                                         stops: [0.0, 0.9],
@@ -156,7 +151,7 @@ class _uploadCvState extends State<uploadcv_view_body> {
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.transparent,
                                           shadowColor: Colors.transparent,
-                                          shape: RoundedRectangleBorder(
+                                          shape: const RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(25),
                                             ),
@@ -165,7 +160,7 @@ class _uploadCvState extends State<uploadcv_view_body> {
                                         onPressed: () {
                                           uploadCV();
                                         },
-                                        child: Row(
+                                        child: const Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceAround,
                                           children: [
@@ -192,37 +187,33 @@ class _uploadCvState extends State<uploadcv_view_body> {
                 else if (isClick == 1)
                   Column(
                     children: [
-                      SizedBox(
-                        height: 40,
-                      ),
+                      const SizedBox(height: 40),
                       Center(
                         child: LoadingAnimationWidget.inkDrop(
                           size: 30,
-                          color: Color(0xFF3FC3AE),
+                          color: kPrimaryColor,
                         ),
                       ),
                     ],
                   )
                 else if (isClick == 2)
                   Padding(
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                       top: 90,
                       left: 70,
                       right: 70,
                     ),
                     child: SwipeableButtonView(
-                      disableColor: Color(0xFF3FC3AE),
+                      disableColor: kPrimaryColor,
                       buttonText: 'Continue',
-                      buttonWidget: Container(
-                        child: Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          color: Colors.grey,
-                        ),
+                      buttonWidget: const Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        color: Colors.grey,
                       ),
-                      activeColor: Color(0xFF3FC3AE),
+                      activeColor: const Color(0xFF3FC3AE),
                       isFinished: isFinished,
                       onWaitingProcess: () {
-                        Future.delayed(Duration(seconds: 2), () {
+                        Future.delayed(const Duration(seconds: 2), () {
                           setState(() {
                             isFinished = true;
                           });

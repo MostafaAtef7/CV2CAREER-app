@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gp_app/constants.dart';
 import 'package:gp_app/core/widgets/defaultbutton.dart';
 import 'package:gp_app/features/description/presentation/view/widgets/text.dart';
 import 'package:readmore/readmore.dart';
@@ -24,7 +25,7 @@ class _descriptionState extends State<descrption_view_body> {
     "Required"
   ];
 
-  int CurrentIndex = 0;
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +34,13 @@ class _descriptionState extends State<descrption_view_body> {
       appBar: AppBar(
         leading: GestureDetector(
           onTap: () => Navigator.of(context).pop(),
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios_rounded,
             size: 20,
           ),
         ),
         flexibleSpace: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [Color(0xFF78EA79), Color(0xFF3FC3AE)],
               begin: Alignment.topLeft,
@@ -57,7 +58,7 @@ class _descriptionState extends State<descrption_view_body> {
               Container(
                 height: 45,
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30)),
@@ -68,15 +69,15 @@ class _descriptionState extends State<descrption_view_body> {
                     stops: [0.0, 0.9],
                   ),
                 ),
-                child: Text(""),
+                child: const Text(""),
               ),
               Container(
-                margin: EdgeInsets.only(left: 15, right: 15),
-                padding:
-                    EdgeInsets.only(top: 20, bottom: 20, right: 25, left: 25),
+                margin: const EdgeInsets.only(left: 15, right: 15),
+                padding: const EdgeInsets.only(
+                    top: 20, bottom: 20, right: 25, left: 25),
                 height: 180,
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.all(
                       Radius.circular(15),
@@ -88,51 +89,50 @@ class _descriptionState extends State<descrption_view_body> {
                           spreadRadius: 0.9,
                           blurRadius: 4)
                     ]),
-                child: Column(
+                child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    text(txt: "Name Job", fontW: FontWeight.w600),
+                    TextCompnent(txt: "Name Job", fontW: FontWeight.w600),
                     SizedBox(height: 10),
                     Row(
                       children: [
-                        text(txt: "Location", fontW: FontWeight.w300),
+                        TextCompnent(txt: "Location", fontW: FontWeight.w300),
                         SizedBox(
                           child: Text(
                             " - ",
                             style: TextStyle(fontWeight: FontWeight.w300),
                           ),
                         ),
-                        text(txt: "Type", fontW: FontWeight.w300),
+                        TextCompnent(txt: "Type", fontW: FontWeight.w300),
                       ],
                     ),
                     SizedBox(height: 7),
                     Row(
                       children: [
-                        text(txt: "Deadline", fontW: FontWeight.w300),
+                        TextCompnent(txt: "Deadline", fontW: FontWeight.w300),
                         SizedBox(
                           child: Text(
                             " - ",
                             style: TextStyle(fontWeight: FontWeight.w300),
                           ),
                         ),
-                        text(txt: "Salary", fontW: FontWeight.w300),
+                        TextCompnent(txt: "Salary", fontW: FontWeight.w300),
                       ],
                     ),
-                    defaultbutton(
-                      text: "Apply Fot This Job",
-                    )
+                    DefaultButton(text: "Apply Fot This Job")
                   ],
                 ),
               ),
             ],
           ),
           Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                text(txt: "Job Description", fontW: FontWeight.w900),
-                SizedBox(height: 15),
+                const TextCompnent(
+                    txt: "Job Description", fontW: FontWeight.w900),
+                const SizedBox(height: 15),
                 SizedBox(
                   height: 25,
                   child: ListView.builder(
@@ -142,27 +142,27 @@ class _descriptionState extends State<descrption_view_body> {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(right: 15),
-                        child: Container(
+                        child: SizedBox(
                           height: 25,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 shadowColor: Colors.transparent,
                                 backgroundColor: Colors.white,
                                 side: BorderSide(
-                                  color: CurrentIndex == index
-                                      ? Color(0XFFF76C07)
-                                      : Color(0XFF797674),
+                                  color: currentIndex == index
+                                      ? selectedColor
+                                      : unSelectedColor,
                                 )),
                             onPressed: () {
                               setState(() {
-                                CurrentIndex = index;
+                                currentIndex = index;
                               });
                             },
                             child: Text(options[index],
                                 style: TextStyle(
-                                    color: CurrentIndex == index
-                                        ? Color(0XFFF76C07)
-                                        : Color(0XFF797674),
+                                    color: currentIndex == index
+                                        ? selectedColor
+                                        : unSelectedColor,
                                     fontWeight: FontWeight.w400)),
                           ),
                         ),
@@ -170,14 +170,14 @@ class _descriptionState extends State<descrption_view_body> {
                     },
                   ),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Column(
                   children: [
                     SizedBox(
                       height: 260,
                       child: ListView.builder(
                         shrinkWrap: true,
-                        itemCount: CurrentIndex == 0 ? data.length : 1,
+                        itemCount: currentIndex == 0 ? data.length : 1,
                         itemBuilder: (context, index) {
                           //currentindex : 0     1    2      3
                           //              All    D   Re    Reqired
@@ -190,32 +190,33 @@ class _descriptionState extends State<descrption_view_body> {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              text(
-                                  txt: CurrentIndex == 0
+                              TextCompnent(
+                                  txt: currentIndex == 0
                                       ? options[index + 1]
-                                      : options[CurrentIndex],
+                                      : options[currentIndex],
                                   fontW: FontWeight.w800),
                               Container(
-                                padding: EdgeInsets.only(left: 10, top: 5),
+                                padding:
+                                    const EdgeInsets.only(left: 10, top: 5),
                                 child: ReadMoreText(
-                                  CurrentIndex == 0
+                                  currentIndex == 0
                                       ? data[index]
-                                      : data[CurrentIndex - 1],
+                                      : data[currentIndex - 1],
                                   trimLines: 2,
                                   colorClickableText: Colors.pink,
                                   trimCollapsedText: 'Read More',
                                   trimExpandedText: 'Show less',
-                                  moreStyle: TextStyle(
-                                      color: Color(0XFF3FC3AE),
+                                  moreStyle: const TextStyle(
+                                      color: kPrimaryColor,
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold),
-                                  lessStyle: TextStyle(
-                                      color: Color(0XFF3FC3AE),
+                                  lessStyle: const TextStyle(
+                                      color: kPrimaryColor,
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                             ],
                           );
                         },

@@ -6,7 +6,7 @@ class descrption_view extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SafeArea(
       child: Scaffold(
-        body: descrption_view_body(),
+        body: DescrptionViewBody(),
       ),
     );
   }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gp_app/constants.dart';
 
-class defaultbutton extends StatelessWidget {
-  String text;
+class DefaultButton extends StatelessWidget {
+  final String text;
 
-  defaultbutton({required this.text});
+  const DefaultButton({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +14,11 @@ class defaultbutton extends StatelessWidget {
         Container(
           height: 40,
           width: 200,
-          margin: EdgeInsets.only(top: 20),
-          decoration: BoxDecoration(
+          margin: const EdgeInsets.only(top: 20),
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(25)),
             gradient: LinearGradient(
-              colors: [Color(0xFF78EA79), Color(0xFF3FC3AE)],
+              colors: [kSecondColor, kPrimaryColor],
               begin: Alignment.topLeft,
               end: Alignment.topRight,
               stops: [0.0, 0.9],
@@ -27,17 +28,16 @@ class defaultbutton extends StatelessWidget {
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.transparent,
                 shadowColor: Colors.transparent,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(25)))),
             onPressed: () {
               // Do Thing
               // Send CV to HR
             },
-            child: Text(text, style: TextStyle(color: Colors.white)),
+            child: Text(text, style: const TextStyle(color: Colors.white)),
           ),
         )
       ],
     );
-    ;
   }
 }
