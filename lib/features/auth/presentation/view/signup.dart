@@ -59,7 +59,7 @@ class _SignUpPageState extends State<SignUpPage> {
               context: context,
               quickAlertType: QuickAlertType.success,
               onConfirmBtnTap: () {
-                GoRouter.of(context).push(AppRouter.homeView);
+                GoRouter.of(context).push(AppRouter.uploadCV);
               },
               text: 'Registered Successfully !');
 

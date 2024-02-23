@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
         if (state is LoginLoading) {
           isLoading = true;
         } else if (state is LoginSuccess) {
-          GoRouter.of(context).push(AppRouter.homeView);
+          GoRouter.of(context).push(AppRouter.bottomBar);
           isLoading = false;
         } else if (state is LoginFailure) {
           showQuickAlert(

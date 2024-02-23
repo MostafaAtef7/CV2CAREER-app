@@ -5,4 +5,6 @@ class AssetsData {
   static String onboardingImage2 = 'assets/images/Organize_resume.png';
   static String onboardingImage3 = 'assets/images/career_progress_ivdb.png';
   static String onboardingImage4 = 'assets/images/Filter-bro.png';
+  static String splashImage = 'assets/images/aplash.png';
+  static String uploadCVImage = 'assets/images/uploadCV.png';
 }

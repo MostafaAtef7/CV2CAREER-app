@@ -1,51 +1,54 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gp_app/constants.dart';
 import 'package:gp_app/core/utils/classes/app_routers.dart';
+import 'package:gp_app/core/utils/classes/assets.dart';
+import 'package:shimmer/shimmer.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
 
   @override
-  State<SplashViewBody> createState() => _SplashViewBodyState();
+  State<SplashViewBody> createState() => _splashScreenState();
 }
 
-class _SplashViewBodyState extends State<SplashViewBody> {
+class _splashScreenState extends State<SplashViewBody> {
   @override
   void initState() {
-    navigatToHomeView();
+    // TODO: implement initState
     super.initState();
-  }
-
-  void navigatToHomeView() {
     Future.delayed(const Duration(seconds: 5), () {
       FirebaseAuth.instance.currentUser == null
           ? GoRouter.of(context).pushReplacement(AppRouter.onboarding)
-          : GoRouter.of(context).pushReplacement(AppRouter.homeView);
+          : GoRouter.of(context).pushReplacement(AppRouter.bottomBar);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: AnimatedTextKit(
-          animatedTexts: [
-            TypewriterAnimatedText(
-              "CV2CAREER",
-              textStyle: const TextStyle(
-                fontSize: 25,
-                color: kPrimaryColor,
-                fontFamily: "Rubik",
-              ),
-              speed: const Duration(milliseconds: 300),
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(150),
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            child: Image.asset(
+              AssetsData.splashImage,
+              width: 200,
             ),
-          ],
-          isRepeatingAnimation: false,
-        ),
+          ),
+          Shimmer.fromColors(
+            baseColor: Color.fromARGB(179, 255, 255, 255),
+            highlightColor: Color(0xff3FC3AE),
+            child: Text(
+              "LOADING ....",
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+        ],
       ),
     );
   }
