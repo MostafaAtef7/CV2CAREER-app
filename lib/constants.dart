@@ -4,6 +4,9 @@ import 'package:gp_app/core/utils/classes/assets.dart';
 import 'features/onboarding/data/models/onboarding_model.dart';
 
 const Color kPrimaryColor = Color(0XFF3FC3AE);
+const Color kSecondColor = Color(0xFF78EA79);
+const Color selectedColor = Color(0XFFF76C07);
+const Color unSelectedColor = Color(0XFF797674);
 
 final List<OnboardingModel> onboardingContentList = [
   OnboardingModel(

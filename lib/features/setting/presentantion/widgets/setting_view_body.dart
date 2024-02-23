@@ -1,11 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:gp_app/core/utils/classes/app_routers.dart';
 import 'package:gp_app/core/widgets/custom_buttom.dart';
 import 'package:gp_app/features/auth/presentation/manager/auth_cubits/auth_cubit.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingViewBody extends StatelessWidget {
   const SettingViewBody({super.key});
