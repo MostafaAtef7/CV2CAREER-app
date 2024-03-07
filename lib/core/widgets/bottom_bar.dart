@@ -5,15 +5,17 @@ import 'package:gp_app/features/uploadCV/presentation/view/uploadcv_view.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class BottomBar extends StatefulWidget {
+  const BottomBar({super.key});
+
   @override
   State<BottomBar> createState() => _BottomBarState();
 }
 
 class _BottomBarState extends State<BottomBar> {
-  List<Widget> Screens = [
-    HomeViewBody(),
+  List<Widget> screens = [
+    const HomeViewBody(),
     uploadcv_View(), //change in future
-    Setting(),
+    const Setting(),
   ];
 
   var _currentIndex = 0;
@@ -21,10 +23,10 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Screens[_currentIndex],
+      body: screens[_currentIndex],
       bottomNavigationBar: Container(
-        padding: EdgeInsets.only(left: 30, right: 30),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.only(left: 30, right: 30),
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Color(0xFF78EA79), Color(0xFF3FC3AE)],
             begin: Alignment.topLeft,
@@ -39,18 +41,18 @@ class _BottomBarState extends State<BottomBar> {
           onTap: (i) => setState(() => _currentIndex = i),
           items: [
             SalomonBottomBarItem(
-              icon: Icon(Icons.shopping_bag),
-              title: Text(''),
+              icon: const Icon(Icons.shopping_bag),
+              title: const Text(''),
               selectedColor: Colors.white,
             ),
             SalomonBottomBarItem(
-              icon: Icon(Icons.notifications),
-              title: Text(""),
+              icon: const Icon(Icons.notifications),
+              title: const Text(""),
               selectedColor: Colors.white,
             ),
             SalomonBottomBarItem(
-              icon: Icon(Icons.settings),
-              title: Text(""),
+              icon: const Icon(Icons.settings),
+              title: const Text(""),
               selectedColor: Colors.white,
             ),
           ],
