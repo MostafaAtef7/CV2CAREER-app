@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class TextCompnent extends StatelessWidget {
+class TextComponent extends StatelessWidget {
   final String txt;
   final FontWeight fontW;
 
-  const TextCompnent({super.key, required this.txt, required this.fontW});
+  const TextComponent({super.key, required this.txt, required this.fontW});
 
   @override
   Widget build(BuildContext context) {

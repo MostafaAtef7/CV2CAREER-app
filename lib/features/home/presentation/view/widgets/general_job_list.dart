@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gp_app/core/utils/classes/app_routers.dart';
 
 import 'job_container.dart';
 
@@ -17,7 +19,9 @@ class GeneralJobList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemBuilder: (ctx, index) {
           return GestureDetector(
-            onTap: () {},
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.jobDescription);
+            },
             child: const JobContainer(),
           );
         },

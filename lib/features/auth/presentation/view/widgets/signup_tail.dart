@@ -19,6 +19,7 @@ class SignUpTail extends StatelessWidget {
             'Already have an account ? ',
             style: TextStyle(
               color: Colors.black,
+              fontFamily: "Rubik",
               // fontSize: 16,
             ),
           ),
@@ -30,6 +31,7 @@ class SignUpTail extends StatelessWidget {
               'Login',
               style: TextStyle(
                 color: kPrimaryColor,
+                fontFamily: "Rubik",
               ),
             ),
           ),

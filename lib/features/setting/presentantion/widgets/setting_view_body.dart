@@ -10,26 +10,29 @@ class SettingViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
-        return Column(
-          children: [
-            CustomButton(
-              width: 200,
-              height: 50,
-              onPressed: () =>
-                  BlocProvider.of<AuthCubit>(context).signOut(context),
-              text: 'Log out',
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            CustomButton(
-              width: 200,
-              height: 50,
-              onPressed: () =>
-                  BlocProvider.of<AuthCubit>(context).retrieveData(),
-              text: 'info',
-            ),
-          ],
+        return Padding(
+          padding: const EdgeInsets.all(120.0),
+          child: Column(
+            children: [
+              CustomButton(
+                width: 200,
+                height: 50,
+                onPressed: () =>
+                    BlocProvider.of<AuthCubit>(context).signOut(context),
+                text: 'Log out',
+              ),
+              const SizedBox(
+                height: 4,
+              ),
+              CustomButton(
+                width: 200,
+                height: 50,
+                onPressed: () =>
+                    BlocProvider.of<AuthCubit>(context).retrieveData(),
+                text: 'info',
+              ),
+            ],
+          ),
         );
       },
     );

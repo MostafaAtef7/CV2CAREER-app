@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'widgets/uploadcv_view_body.dart';
 
-class uploadcv_View extends StatelessWidget {
+class UploadCvView extends StatelessWidget {
+  const UploadCvView({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Scaffold(
-        body: uploadcv_view_body(),
-      ),
+    return const Scaffold(
+      body: SingleChildScrollView(child: UploadCvViewBody()),
     );
   }
 }

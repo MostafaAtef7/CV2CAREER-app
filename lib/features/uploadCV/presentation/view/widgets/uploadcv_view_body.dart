@@ -9,17 +9,17 @@ import 'package:http_parser/http_parser.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 
-class uploadcv_view_body extends StatefulWidget {
-  const uploadcv_view_body({super.key});
+class UploadCvViewBody extends StatefulWidget {
+  const UploadCvViewBody({super.key});
 
   @override
-  State<uploadcv_view_body> createState() => _uploadCvState();
+  State<UploadCvViewBody> createState() => UploadCvState();
 }
 
 var isClick = 0;
 var isFinished = false;
 
-class _uploadCvState extends State<uploadcv_view_body> {
+class UploadCvState extends State<UploadCvViewBody> {
   uploadCV() async {
     print("in Fun");
     // Allow the user to pick a file
@@ -53,7 +53,7 @@ class _uploadCvState extends State<uploadcv_view_body> {
       request.files.add(multipartFile);
 
       //_______________________ Test
-      Future.delayed(Duration(seconds: 7), () {
+      Future.delayed(const Duration(seconds: 7), () {
         setState(
           () {
             isClick = 2; // Set success state
@@ -97,140 +97,137 @@ class _uploadCvState extends State<uploadcv_view_body> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.only(top: 70),
-              child: Column(
-                children: [
-                  Image.asset(
-                    AssetsData.uploadCVImage,
-                    width: 200,
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 40, top: 40),
-                    child: const Text("Upload Your CV",
-                        style: TextStyle(fontWeight: FontWeight.w800)),
-                  ),
-                ],
-              ),
-            ),
-            Column(
-              children: <Widget>[
-                if (isClick == 0)
-                  Column(
-                    children: [
-                      const SizedBox(height: 40),
-                      SizedBox(
-                          height: 80,
-                          width: 270,
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    height: 40,
-                                    width: 250,
-                                    margin: EdgeInsets.only(top: 20),
-                                    decoration: const BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(25)),
-                                      gradient: LinearGradient(
-                                        colors: [kSecondColor, kPrimaryColor],
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.topRight,
-                                        stops: [0.0, 0.9],
-                                      ),
-                                    ),
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.transparent,
-                                          shadowColor: Colors.transparent,
-                                          shape: const RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(25),
-                                            ),
-                                          ),
-                                        ),
-                                        onPressed: () {
-                                          uploadCV();
-                                        },
-                                        child: const Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Icon(
-                                              Icons.drive_folder_upload,
-                                              color: Colors.white,
-                                            ),
-                                            Text(
-                                              "Select CV To Upload",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            )
-                                          ],
-                                        )),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
-                    ],
-                  )
-                else if (isClick == 1)
-                  Column(
-                    children: [
-                      const SizedBox(height: 40),
-                      Center(
-                        child: LoadingAnimationWidget.inkDrop(
-                          size: 30,
-                          color: kPrimaryColor,
-                        ),
-                      ),
-                    ],
-                  )
-                else if (isClick == 2)
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 90,
-                      left: 70,
-                      right: 70,
-                    ),
-                    child: SwipeableButtonView(
-                      disableColor: kPrimaryColor,
-                      buttonText: 'Continue',
-                      buttonWidget: const Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: Colors.grey,
-                      ),
-                      activeColor: const Color(0xFF3FC3AE),
-                      isFinished: isFinished,
-                      onWaitingProcess: () {
-                        Future.delayed(const Duration(seconds: 2), () {
-                          setState(() {
-                            isFinished = true;
-                          });
-                        });
-                      },
-                      onFinish: () async {
-                        GoRouter.of(context).push(AppRouter.bottomBar);
-                        setState(() {
-                          isFinished = false;
-                        });
-                      },
-                    ),
-                  )
+    return Expanded(
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.only(top: 70),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(
+                  AssetsData.uploadCVImage,
+                  width: 200,
+                ),
+                Container(
+                  margin: const EdgeInsets.only(bottom: 40, top: 40),
+                  child: const Text("Upload Your CV",
+                      style: TextStyle(fontWeight: FontWeight.w800)),
+                ),
               ],
             ),
-          ],
-        ),
+          ),
+          Column(
+            children: <Widget>[
+              if (isClick == 0)
+                Column(
+                  children: [
+                    const SizedBox(height: 40),
+                    SizedBox(
+                        height: 80,
+                        width: 270,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: 40,
+                                  width: 250,
+                                  margin: const EdgeInsets.only(top: 20),
+                                  decoration: const BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(25)),
+                                    gradient: LinearGradient(
+                                      colors: [kSecondColor, kPrimaryColor],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.topRight,
+                                      stops: [0.0, 0.9],
+                                    ),
+                                  ),
+                                  child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.transparent,
+                                        shadowColor: Colors.transparent,
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(25),
+                                          ),
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        uploadCV();
+                                      },
+                                      child: const Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Icon(
+                                            Icons.drive_folder_upload,
+                                            color: Colors.white,
+                                          ),
+                                          Text(
+                                            "Select CV To Upload",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          )
+                                        ],
+                                      )),
+                                ),
+                              ],
+                            ),
+                          ],
+                        )),
+                  ],
+                )
+              else if (isClick == 1)
+                Column(
+                  children: [
+                    const SizedBox(height: 40),
+                    Center(
+                      child: LoadingAnimationWidget.inkDrop(
+                        size: 30,
+                        color: kPrimaryColor,
+                      ),
+                    ),
+                  ],
+                )
+              else if (isClick == 2)
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 90,
+                    left: 70,
+                    right: 70,
+                  ),
+                  child: SwipeableButtonView(
+                    disableColor: kPrimaryColor,
+                    buttonText: 'Continue',
+                    buttonWidget: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: Colors.grey,
+                    ),
+                    activeColor: const Color(0xFF3FC3AE),
+                    isFinished: isFinished,
+                    onWaitingProcess: () {
+                      Future.delayed(const Duration(seconds: 2), () {
+                        setState(() {
+                          isFinished = true;
+                        });
+                      });
+                    },
+                    onFinish: () async {
+                      GoRouter.of(context).push(AppRouter.bottomBar);
+                      setState(() {
+                        isFinished = false;
+                      });
+                    },
+                  ),
+                )
+            ],
+          ),
+        ],
       ),
     );
   }

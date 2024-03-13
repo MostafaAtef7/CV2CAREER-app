@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gp_app/features/home/presentation/view/widgets/home_view_body.dart';
-import 'package:gp_app/features/setting/presentantion/setting_view.dart';
+import 'package:gp_app/core/widgets/custom_app_bar.dart';
+import 'package:gp_app/features/home/presentation/view/home_view.dart';
+import 'package:gp_app/features/setting/presentantion/widgets/setting_view_body.dart';
 import 'package:gp_app/features/uploadCV/presentation/view/uploadcv_view.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -13,9 +14,9 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<BottomBar> {
   List<Widget> screens = [
-    const HomeViewBody(),
-    uploadcv_View(), //change in future
-    const Setting(),
+    const HomeView(),
+    const UploadCvView(),
+    const SettingViewBody(),
   ];
 
   var _currentIndex = 0;
@@ -23,6 +24,16 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CustomAppBar(widget:  Text(
+            "CV2CAREER",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              fontFamily: "Rubik",
+            ),
+          ),
+          ),
       body: screens[_currentIndex],
       bottomNavigationBar: Container(
         padding: const EdgeInsets.only(left: 30, right: 30),
@@ -35,8 +46,9 @@ class _BottomBarState extends State<BottomBar> {
           ),
         ),
         child: SalomonBottomBar(
-          backgroundColor: Colors.transparent,
+          selectedColorOpacity: 0.3,
           unselectedItemColor: Colors.white,
+          selectedItemColor: Colors.black,
           currentIndex: _currentIndex,
           onTap: (i) => setState(() => _currentIndex = i),
           items: [

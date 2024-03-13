@@ -1,34 +1,47 @@
 import 'package:flutter/material.dart';
 
-import 'package:gp_app/constants.dart';
-
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final IconButton? iconButton;
+  final Widget? widget;
   const CustomAppBar({
     super.key,
-    @required this.iconButton,
+    @required this.widget,
   });
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-
-  @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.white,
-      elevation: 0,
-      scrolledUnderElevation: 0,
-      leading: iconButton ?? const SizedBox(),
-      centerTitle: true,
-      title: const Text(
-        "CV2CAREER",
-        style: TextStyle(
-          color: kPrimaryColor,
-          fontWeight: FontWeight.bold,
-          fontSize: 20,
-          fontFamily: "Rubik",
+    return Column(
+      children: [
+        Container(
+          height: 50,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFF78EA79), Color(0xFF3FC3AE)],
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              stops: [0.0, 0.9],
+            ),
+          ),
         ),
-      ),
+        Container(
+          height: 50,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(30)),
+            gradient: LinearGradient(
+              colors: [Color(0xFF78EA79), Color(0xFF3FC3AE)],
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              stops: [0.0, 0.9],
+            ),
+          ),
+          child: const Text(""),
+        ),
+      ],
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
