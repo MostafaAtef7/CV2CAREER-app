@@ -12,7 +12,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Column(
       children: [
         Container(
-          height: 50,
+          height: 6,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [Color(0xFF78EA79), Color(0xFF3FC3AE)],

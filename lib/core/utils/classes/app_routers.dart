@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gp_app/core/widgets/bottom_bar.dart';
 import 'package:gp_app/features/auth/presentation/manager/auth_cubits/auth_cubit.dart';
 import 'package:gp_app/features/auth/presentation/view/login.dart';
 import 'package:gp_app/features/auth/presentation/view/signup.dart';
+import 'package:gp_app/features/cv_view/presentation/view/cv_view.dart';
 import 'package:gp_app/features/job_description/presentation/view/job_descrption_view.dart';
 import 'package:gp_app/features/home/presentation/view/home_view.dart';
 import 'package:gp_app/features/onboarding/presentation/view/onboarding.dart';
@@ -20,6 +23,7 @@ abstract class AppRouter {
   static const String setting = "/setting";
   static const String bottomBar = "/BottomBar";
   static const String uploadCV = "/uploadcv_View";
+  static const String viewCV = "/viewCV";
 
   static final router = GoRouter(
     routes: [
@@ -66,6 +70,10 @@ abstract class AppRouter {
       GoRoute(
         path: uploadCV,
         builder: (ctx, state) => const UploadCvView(),
+      ),
+            GoRoute(
+        path: viewCV,
+        builder: (ctx, state) => CvView(file: state.extra as File,),
       ),
     ],
   );

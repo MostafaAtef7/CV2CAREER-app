@@ -97,23 +97,20 @@ class UploadCvState extends State<UploadCvViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Center(
       child: Column(
+        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             padding: const EdgeInsets.only(top: 70),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
                   AssetsData.uploadCVImage,
                   width: 200,
                 ),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 40, top: 40),
-                  child: const Text("Upload Your CV",
-                      style: TextStyle(fontWeight: FontWeight.w800)),
-                ),
+                const Text("Upload Your CV",
+                    style: TextStyle(fontWeight: FontWeight.w800)),
               ],
             ),
           ),

@@ -18,8 +18,6 @@ class LoginTail extends StatelessWidget {
           'don\'t have an account ? ',
           style: TextStyle(
             color: Colors.black,
-            fontFamily: "Rubik",
-
             // fontSize: 16,
           ),
         ),
@@ -31,7 +29,6 @@ class LoginTail extends StatelessWidget {
             'Sign Up',
             style: TextStyle(
               color: kPrimaryColor,
-              fontFamily: "Rubik",
             ),
           ),
         ),

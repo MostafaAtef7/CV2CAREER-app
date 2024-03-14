@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gp_app/core/utils/classes/app_routers.dart';
@@ -47,6 +48,14 @@ class AuthCubit extends Cubit<AuthState> {
         email: emailAddress,
         password: password,
       );
+
+      
+      //Create Folders
+      firebase_storage.Reference userFolderRef =
+          firebase_storage.FirebaseStorage.instance.ref().child('users');
+      firebase_storage.Reference subFolder = userFolderRef.child(emailAddress);
+      
+      await subFolder.putString("");
       emit(RegisterSuccess());
       saveSignUpData(
           emailAddress: emailAddress,

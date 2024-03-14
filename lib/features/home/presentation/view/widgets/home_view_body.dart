@@ -35,7 +35,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: 20,               
               ),
             ]),
           ),

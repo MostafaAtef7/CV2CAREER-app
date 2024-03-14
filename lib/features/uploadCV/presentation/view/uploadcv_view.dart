@@ -7,7 +7,7 @@ class UploadCvView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SingleChildScrollView(child: UploadCvViewBody()),
+      body: UploadCvViewBody(),
     );
   }
 }
