@@ -13,7 +13,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(
+        horizontal: 10,
+      ),
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -35,17 +37,12 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 ),
               ),
               SizedBox(
-                height: 20,               
+                height: 15,
               ),
             ]),
           ),
           // SliverFillRemaining => make ListView built the remaining space in the screen not all items at once
-          SliverFillRemaining(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
-              child: RecommendedJobList(),
-            ),
-          )
+          RecommendedJobList()
         ],
       ),
     );

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gp_app/core/utils/classes/app_routers.dart';
-
-import 'job_container.dart';
+import 'package:gp_app/features/home/presentation/view/widgets/general_job_container.dart';
 
 class GeneralJobList extends StatelessWidget {
   const GeneralJobList({super.key});
@@ -10,9 +9,9 @@ class GeneralJobList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.20,
+      height: 120,
       child: ListView.separated(
-        itemCount: 10,
+        itemCount: 8,
         separatorBuilder: (ctx, index) => const SizedBox(
           width: 15,
         ),
@@ -22,7 +21,7 @@ class GeneralJobList extends StatelessWidget {
             onTap: () {
               GoRouter.of(context).push(AppRouter.jobDescription);
             },
-            child: const JobContainer(),
+            child: const GeneralJobContainer(),
           );
         },
       ),

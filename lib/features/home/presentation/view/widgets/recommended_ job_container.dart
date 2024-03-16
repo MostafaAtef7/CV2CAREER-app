@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class JobContainer extends StatelessWidget {
-  const JobContainer({super.key});
+class RecommendedJobContainer extends StatelessWidget {
+  const RecommendedJobContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -9,11 +9,11 @@ class JobContainer extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        height: 100,
-        width: MediaQuery.of(context).size.width * 0.75,
+        height: 96,
+        width: MediaQuery.of(context).size.width * 0.85,
         decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(24),
+            borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.5),
@@ -32,14 +32,13 @@ class JobContainer extends StatelessWidget {
                   Text(
                     "Company Name",
                     style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
                       fontFamily: "Rubik",
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-
+                  SizedBox(height: 5),
                   Text(
                     "Job Title",
                     style: TextStyle(
@@ -80,7 +79,7 @@ class JobContainer extends StatelessWidget {
                       Row(
                         children: [
                           Icon(
-                            Icons.location_city,
+                            Icons.location_on,
                             size: 15,
                             color: Colors.yellow,
                           ),
