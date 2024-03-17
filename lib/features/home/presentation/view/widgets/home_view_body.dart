@@ -18,7 +18,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
       padding: const EdgeInsets.only(
         right: 10,
         left: 10,
-        top: 80,
+        top: 75,
       ),
       child: CustomScrollView(
         slivers: [
