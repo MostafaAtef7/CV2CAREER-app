@@ -10,6 +10,7 @@ import 'package:gp_app/features/cv_view/presentation/view/cv_view.dart';
 import 'package:gp_app/features/job_description/presentation/view/job_descrption_view.dart';
 import 'package:gp_app/features/home/presentation/view/home_view.dart';
 import 'package:gp_app/features/onboarding/presentation/view/onboarding.dart';
+import 'package:gp_app/features/see_all_general_job/presentation/view/see_all_general_job_view.dart';
 import 'package:gp_app/features/setting/presentantion/widgets/setting_view_body.dart';
 import 'package:gp_app/features/splash/presentation/view/splash_view.dart';
 import 'package:gp_app/features/uploadCV/presentation/view/uploadcv_view.dart';
@@ -24,6 +25,7 @@ abstract class AppRouter {
   static const String bottomBar = "/BottomBar";
   static const String uploadCV = "/uploadcv_View";
   static const String viewCV = "/viewCV";
+  static const String seeAllGeneralJob = "/seeAllGeneralJob";
 
   static final router = GoRouter(
     routes: [
@@ -71,9 +73,15 @@ abstract class AppRouter {
         path: uploadCV,
         builder: (ctx, state) => const UploadCvView(),
       ),
-            GoRoute(
+      GoRoute(
         path: viewCV,
-        builder: (ctx, state) => CvView(file: state.extra as File,),
+        builder: (ctx, state) => CvView(
+          file: state.extra as File,
+        ),
+      ),
+      GoRoute(
+        path: seeAllGeneralJob,
+        builder: (ctx, state) => const SeeAllGeneralJobView(),
       ),
     ],
   );

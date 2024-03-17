@@ -14,7 +14,7 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   List<Widget> screens = [
     const HomeView(),
-    const Scaffold(body: SizedBox(height: 10,width:10)),
+    const SizedBox(height: 10, width: 10),
     const SettingViewBody(),
   ];
 
@@ -23,18 +23,29 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
-        widget: Text(
-          "CV2CAREER",
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            fontFamily: "Rubik",
+      body: Stack(children: [
+        CustomAppBar(
+          widget: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                "Hi, Mostafa",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                  fontFamily: "Inter",
+                ),
+              ),
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.supervised_user_circle,
+                      color: Colors.white))
+            ],
           ),
         ),
-      ),
-      body: screens[_currentIndex],
+        screens[_currentIndex],
+      ]),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.only(left: 30, right: 30),
         decoration: const BoxDecoration(

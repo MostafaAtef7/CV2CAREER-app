@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../core/utils/classes/app_routers.dart';
 import 'general_job_list.dart';
 import 'recommended_job_list.dart';
 
@@ -12,37 +14,79 @@ class HomeViewBody extends StatefulWidget {
 class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 10,
+    return Padding(
+      padding: const EdgeInsets.only(
+        right: 10,
+        left: 10,
+        top: 80,
       ),
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              SizedBox(
-                height: 100,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "General Jobs",
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontFamily: "Inter",
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).push(AppRouter.seeAllGeneralJob);
+                    },
+                    child: const Row(
+                      children: [
+                        Text(
+                          "See All",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                            fontFamily: "Inter",
+                          ),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 15,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
-              GeneralJobList(),
-              SizedBox(
+              const SizedBox(
+                height: 10,
+              ),
+              const GeneralJobList(),
+              const SizedBox(
                 height: 20,
               ),
-              Text(
+              const Text(
                 "Recommended Jobs",
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
-                  fontFamily: "Rubik",
+                  fontFamily: "Inter",
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
             ]),
           ),
           // SliverFillRemaining => make ListView built the remaining space in the screen not all items at once
-          RecommendedJobList()
+          const RecommendedJobList()
         ],
       ),
     );

@@ -8,7 +8,7 @@ class RecommendedJobContainer extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         height: 96,
         width: MediaQuery.of(context).size.width * 0.85,
         decoration: BoxDecoration(
@@ -22,61 +22,59 @@ class RecommendedJobContainer extends StatelessWidget {
                 offset: const Offset(0, 3),
               )
             ]),
-        child: const Row(
+        child: Row(
           children: [
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Company Name",
                     style: TextStyle(
-                      fontSize: 12,
-                      fontFamily: "Rubik",
+                      fontSize: 10,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: "Inter",
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(height: 5),
-                  Text(
+                  const SizedBox(height: 5),
+                  const Text(
                     "Job Title",
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
-                      fontFamily: "Rubik",
+                      fontFamily: "Inter",
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(
-                    height: 5,
+                  const SizedBox(
+                    height: 10,
                   ),
                   Row(
                     children: [
                       Row(
                         children: [
-                          Icon(
-                            Icons.money,
-                            size: 15,
-                            color: Colors.yellow,
-                          ),
-                          SizedBox(
+                          Image.asset("assets/images/icons/dollar.png",
+                              color: Colors.yellow, height: 15, width: 15),
+                          const SizedBox(
                             width: 5,
                           ),
-                          Text(
+                          const Text(
                             "10,000",
                             style: TextStyle(
-                              fontSize: 14,
-                              fontFamily: "Rubik",
+                              fontSize: 12,
+                              fontFamily: "Inter",
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
-                      Row(
+                      const Row(
                         children: [
                           Icon(
                             Icons.location_on,
@@ -89,8 +87,8 @@ class RecommendedJobContainer extends StatelessWidget {
                           Text(
                             "Remote",
                             style: TextStyle(
-                              fontSize: 14,
-                              fontFamily: "Rubik",
+                              fontSize: 12,
+                              fontFamily: "Inter",
                             ),
                           ),
                         ],
@@ -108,7 +106,7 @@ class RecommendedJobContainer extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(
+            const Icon(
               Icons.arrow_forward_ios,
               size: 18,
             ),

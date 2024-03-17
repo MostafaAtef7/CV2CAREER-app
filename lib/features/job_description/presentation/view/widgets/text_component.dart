@@ -10,7 +10,7 @@ class TextComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       txt,
-      style: TextStyle(fontWeight: fontW),
+      style: TextStyle(fontWeight: fontW, fontFamily: "Inter"),
     );
   }
 }

@@ -22,46 +22,43 @@ class GeneralJobContainer extends StatelessWidget {
                 offset: const Offset(0, 3),
               )
             ]),
-        child: const Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               "Job Title",
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
-                fontFamily: "Rubik",
+                fontFamily: "Inter",
               ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
-            SizedBox(
-              height: 5,
+            const SizedBox(
+              height: 10,
             ),
             Row(
               children: [
-                Icon(
-                  Icons.money,
-                  size: 15,
-                  color: Colors.yellow,
-                ),
-                SizedBox(
+                Image.asset("assets/images/icons/dollar.png",
+                    color: Colors.yellow, height: 15, width: 15),
+                const SizedBox(
                   width: 5,
                 ),
-                Text(
+                const Text(
                   "10,000",
                   style: TextStyle(
-                    fontSize: 14,
-                    fontFamily: "Rubik",
+                    fontSize: 12,
+                    fontFamily: "Inter",
                   ),
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
-            Row(
+            const Row(
               children: [
                 Icon(
                   Icons.location_on,
@@ -74,8 +71,8 @@ class GeneralJobContainer extends StatelessWidget {
                 Text(
                   "Remote",
                   style: TextStyle(
-                    fontSize: 14,
-                    fontFamily: "Rubik",
+                    fontSize: 12,
+                    fontFamily: "Inter",
                   ),
                 ),
               ],
