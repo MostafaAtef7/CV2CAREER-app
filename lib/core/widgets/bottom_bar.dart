@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gp_app/features/Notification/presentation/view/notification_view.dart';
 import 'package:gp_app/features/home/presentation/view/widgets/home_view_body.dart';
 import 'package:gp_app/features/setting/presentantion/setting_view.dart';
+import 'package:gp_app/features/uploadCV/presentation/view/uploadcv_view.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class BottomBar extends StatefulWidget {
@@ -12,10 +12,10 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
-  List<Widget> screens = [
-    const HomeViewBody(),
-    const NotificationView(),
-    const Setting(),
+  List<Widget> Screens = [
+    HomeViewBody(),
+    uploadcv_View(), //change in future
+    Setting(),
   ];
 
   var _currentIndex = 0;
@@ -23,7 +23,7 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[_currentIndex],
+      body: Screens[_currentIndex],
       bottomNavigationBar: Container(
         padding: const EdgeInsets.only(left: 30, right: 30),
         decoration: const BoxDecoration(
@@ -35,8 +35,9 @@ class _BottomBarState extends State<BottomBar> {
           ),
         ),
         child: SalomonBottomBar(
-          backgroundColor: Colors.transparent,
+          selectedColorOpacity: 0.3,
           unselectedItemColor: Colors.white,
+          selectedItemColor: Colors.black,
           currentIndex: _currentIndex,
           onTap: (i) => setState(() => _currentIndex = i),
           items: [

@@ -1,1 +1,0 @@
-manager folder conatins files that will do State Managment like Bloc or GetX

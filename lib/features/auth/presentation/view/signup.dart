@@ -1,52 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:gp_app/core/utils/classes/app_routers.dart';
-import 'package:gp_app/core/utils/classes/assets.dart';
-import 'package:gp_app/core/widgets/custom_buttom.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:quickalert/models/quickalert_type.dart';
+import 'package:gp_app/features/auth/presentation/view/widgets/signup_body.dart';
 
-import '../../../../constants.dart';
-import '../manager/auth_cubits/auth_cubit.dart';
-import 'widgets/custom_text.dart';
-import 'widgets/custom_text_form_field.dart';
-import '../../../../core/utils/functions/show_quick_alert.dart';
-import 'widgets/signup_tail.dart';
-
-class SignUpPage extends StatefulWidget {
+class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
-
-  @override
-  State<SignUpPage> createState() => _SignUpPageState();
-}
-
-class _SignUpPageState extends State<SignUpPage> {
-  String? userName;
-
-  String? emailAddress;
-
-  String? password;
-
-  String? confirmPassword;
-
-  TextEditingController passwordController = TextEditingController();
-
-  TextEditingController confirmPasswordController = TextEditingController();
-
-  String? userType;
-
-  String? groupValue = 'HR';
-
-  bool isLoading = false;
-
-  GlobalKey<FormState> signupKey = GlobalKey();
-  @override
-  void dispose() {
-    super.dispose();
-    passwordController.dispose();
-    confirmPasswordController.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -220,7 +176,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             },
                           ),
                         ),
-                        SignUpTail()
+                        const SignUpTail()
                       ],
                     )
                   ],

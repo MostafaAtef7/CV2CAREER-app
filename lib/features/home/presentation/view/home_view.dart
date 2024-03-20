@@ -1,32 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gp_app/core/widgets/custom_app_bar.dart';
+import 'package:gp_app/features/home/presentation/view/widgets/home_view_body.dart';
 
-class HomeView extends StatefulWidget {
+class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
-  State<HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView> {
-  int index = 0;
-  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: const CustomAppBar(
-          iconButton: null,
-        ),
-        // bottomNavigationBar: BottomBar(
-        //   index: index,
-        //   onTap: (value) {
-        //     setState(() {
-        //       index = value;
-        //     });
-        //   },
-        // ),
-        // body: selectPageFromBottomBar(index: index),
-      ),
-    );
+    return const HomeViewBody();
   }
 }

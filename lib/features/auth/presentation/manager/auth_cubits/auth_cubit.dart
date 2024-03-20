@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gp_app/core/utils/classes/app_routers.dart';
@@ -58,16 +59,6 @@ class AuthCubit extends Cubit<AuthState> {
         email: emailAddress,
         password: password,
       );
-
-      // save user info in cloud store
-      _firestore.collection("users").doc(userCredential.user!.uid).set(
-        {
-          'uid': userCredential.user!.uid,
-          'email': emailAddress,
-        },
-      );
-
-      // __________________
       emit(RegisterSuccess());
       saveSignUpData(
           emailAddress: emailAddress,

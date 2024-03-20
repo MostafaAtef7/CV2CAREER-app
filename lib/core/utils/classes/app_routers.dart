@@ -1,23 +1,31 @@
+import 'dart:io';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gp_app/core/widgets/bottom_bar.dart';
+import 'package:gp_app/features/auth/presentation/manager/auth_cubits/auth_cubit.dart';
 import 'package:gp_app/features/auth/presentation/view/login.dart';
 import 'package:gp_app/features/auth/presentation/view/signup.dart';
+import 'package:gp_app/features/cv_view/presentation/view/cv_view.dart';
+import 'package:gp_app/features/job_description/presentation/view/job_descrption_view.dart';
 import 'package:gp_app/features/home/presentation/view/home_view.dart';
-import 'package:gp_app/features/job_view_details/presentation/view/job_view_details.dart';
 import 'package:gp_app/features/onboarding/presentation/view/onboarding.dart';
-import 'package:gp_app/features/setting/presentantion/setting_view.dart';
+import 'package:gp_app/features/see_all_general_job/presentation/view/see_all_general_job_view.dart';
+import 'package:gp_app/features/setting/presentantion/widgets/setting_view_body.dart';
 import 'package:gp_app/features/splash/presentation/view/splash_view.dart';
 import 'package:gp_app/features/uploadCV/presentation/view/uploadcv_view.dart';
 
 abstract class AppRouter {
   static const String homeView = "/homeView";
-  static const String jobViewDetails = "/jobViewDetails";
+  static const String jobDescription = "/jobDescription";
   static const String onboarding = "/onboarding";
   static const String login = "/login";
   static const String signup = "/signuo";
   static const String setting = "/setting";
   static const String bottomBar = "/BottomBar";
   static const String uploadCV = "/uploadcv_View";
+  static const String viewCV = "/viewCV";
+  static const String seeAllGeneralJob = "/seeAllGeneralJob";
 
   static final router = GoRouter(
     routes: [
@@ -31,8 +39,8 @@ abstract class AppRouter {
         builder: (context, state) => const HomeView(),
       ),
       GoRoute(
-        path: jobViewDetails,
-        builder: (ctx, state) => const JobViewDetails(),
+        path: jobDescription,
+        builder: (ctx, state) => const JobDescriptionView(),
       ),
       GoRoute(
         path: onboarding,
@@ -40,23 +48,37 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: login,
-        builder: (ctx, state) => const LoginPage(),
+        builder: (ctx, state) => BlocProvider(
+            create: (context) => AuthCubit(), child: const LoginPage()),
       ),
       GoRoute(
         path: signup,
-        builder: (ctx, state) => const SignUpPage(),
+        builder: (ctx, state) => BlocProvider(
+          create: (context) => AuthCubit(),
+          child: const SignUpPage(),
+        ),
       ),
       GoRoute(
         path: setting,
-        builder: (ctx, state) => const Setting(),
+        builder: (ctx, state) => const SettingViewBody(),
       ),
       GoRoute(
         path: bottomBar,
-        builder: (ctx, state) => const BottomBar(),
+        builder: (ctx, state) => BottomBar(),
       ),
       GoRoute(
         path: uploadCV,
-        builder: (ctx, state) => uploadcv_View(),
+        builder: (ctx, state) => const UploadCvView(),
+      ),
+      GoRoute(
+        path: viewCV,
+        builder: (ctx, state) => CvView(
+          file: state.extra as File,
+        ),
+      ),
+      GoRoute(
+        path: seeAllGeneralJob,
+        builder: (ctx, state) => const SeeAllGeneralJobView(),
       ),
     ],
   );
