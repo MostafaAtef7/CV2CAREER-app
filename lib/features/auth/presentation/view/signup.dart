@@ -220,7 +220,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             },
                           ),
                         ),
-                        const SignUpTail()
+                        SignUpTail()
                       ],
                     )
                   ],

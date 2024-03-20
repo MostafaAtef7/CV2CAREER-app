@@ -4,10 +4,6 @@ import 'package:gp_app/constants.dart';
 import 'package:gp_app/core/utils/classes/app_routers.dart';
 
 class SignUpTail extends StatelessWidget {
-  const SignUpTail({
-    super.key,
-  });
-
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -52,7 +52,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: bottomBar,
-        builder: (ctx, state) => BottomBar(),
+        builder: (ctx, state) => const BottomBar(),
       ),
       GoRoute(
         path: uploadCV,

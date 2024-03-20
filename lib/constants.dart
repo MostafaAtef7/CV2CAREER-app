@@ -7,6 +7,7 @@ const Color kPrimaryColor = Color(0XFF3FC3AE);
 const Color kSecondColor = Color(0xFF78EA79);
 const Color selectedColor = Color(0XFFF76C07);
 const Color unSelectedColor = Color(0XFF797674);
+const Color chatColor = Color(0XFFD9D9D9);
 
 final List<OnboardingModel> onboardingContentList = [
   OnboardingModel(
