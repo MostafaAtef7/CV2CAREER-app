@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gp_app/core/widgets/custom_app_bar.dart';
+import 'package:gp_app/features/Notification/presentation/view/notification_view.dart';
 import 'package:gp_app/features/home/presentation/view/home_view.dart';
 import 'package:gp_app/features/setting/presentantion/widgets/setting_view_body.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -14,7 +15,7 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   List<Widget> screens = [
     const HomeView(),
-    const SizedBox(height: 10, width: 10),
+    const NotificationView(),
     const SettingViewBody(),
   ];
 

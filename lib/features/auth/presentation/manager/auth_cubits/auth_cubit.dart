@@ -1,15 +1,17 @@
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gp_app/core/utils/classes/app_routers.dart';
-import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   AuthCubit() : super(AuthInitial());
 
   String? userName;
@@ -20,9 +22,16 @@ class AuthCubit extends Cubit<AuthState> {
   void login({required String emailAddress, required String password}) async {
     emit(LoginLoading());
     try {
-      await FirebaseAuth.instance
+      UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: emailAddress, password: password);
 
+      // save user info in cloud store
+      _firestore.collection("users").doc(userCredential.user!.uid).set(
+        {
+          'uid': userCredential.user!.uid,
+          'email': emailAddress,
+        },
+      );
       emit(LoginSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -44,18 +53,27 @@ class AuthCubit extends Cubit<AuthState> {
       required String userType}) async {
     emit(RegisterLoading());
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress,
         password: password,
       );
 
-      
       //Create Folders
       firebase_storage.Reference userFolderRef =
           firebase_storage.FirebaseStorage.instance.ref().child('users');
       firebase_storage.Reference subFolder = userFolderRef.child(emailAddress);
-      
+
       await subFolder.putString("");
+      // save user info in cloud store
+      _firestore.collection("users").doc(userCredential.user!.uid).set(
+        {
+          'uid': userCredential.user!.uid,
+          'email': emailAddress,
+        },
+      );
+
+      // __________________
       emit(RegisterSuccess());
       saveSignUpData(
           emailAddress: emailAddress,
@@ -109,5 +127,10 @@ class AuthCubit extends Cubit<AuthState> {
       }
       GoRouter.of(context).pushReplacement(AppRouter.login);
     }
+  }
+
+  // Checking Emails If the current user is present in the emails , ignored
+  User? getCurrentuser() {
+    return _auth.currentUser;
   }
 }
