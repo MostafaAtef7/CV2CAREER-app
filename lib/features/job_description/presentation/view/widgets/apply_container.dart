@@ -54,7 +54,9 @@ class ApplyContainer extends StatelessWidget {
               TextComponent(txt: "Salary", fontW: FontWeight.w300),
             ],
           ),
-          DefaultButton(text: "Apply")
+          DefaultButton(
+            text: "Apply",
+          )
         ],
       ),
     );

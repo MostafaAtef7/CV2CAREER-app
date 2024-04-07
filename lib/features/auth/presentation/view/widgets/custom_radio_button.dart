@@ -21,6 +21,7 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
           groupValue: CustomRadioButton.groupValue,
           onChanged: (value) {
             CustomRadioButton.groupValue = value;
+            print(value);
             setState(() {});
           },
         ),
@@ -34,6 +35,7 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
           groupValue: CustomRadioButton.groupValue,
           onChanged: (value) {
             CustomRadioButton.groupValue = value;
+            print(value);
             setState(
               () {},
             );

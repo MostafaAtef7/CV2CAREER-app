@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gp_app/core/widgets/custom_app_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../core/utils/classes/app_routers.dart';
 import 'general_job_list.dart';
 import 'recommended_job_list.dart';
@@ -12,83 +14,125 @@ class HomeViewBody extends StatefulWidget {
 }
 
 class _HomeViewBodyState extends State<HomeViewBody> {
+  late String userName = " ";
+
+  void retrieveData() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    userName = sharedPreferences.getString('userName')!;
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    retrieveData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        right: 10,
-        left: 10,
-        top: 75,
-      ),
-      child: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    "General Jobs",
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontFamily: "Inter",
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).push(AppRouter.seeAllGeneralJob);
-                    },
-                    child: const Row(
-                      children: [
-                        Text(
-                          "See All",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                            fontFamily: "Inter",
-                          ),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 15,
-                          color: Colors.white,
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const GeneralJobList(),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                "Recommended Jobs",
-                style: TextStyle(
-                  fontSize: 15,
+    return Stack(
+      children: [
+        CustomAppBar(
+          paddingHorizontal: 20,
+          paddingVertical: 10,
+          widget: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Hi, $userName",
+                style: const TextStyle(
+                  color: Colors.white,
                   fontWeight: FontWeight.bold,
+                  fontSize: 14,
                   fontFamily: "Inter",
                 ),
               ),
-              const SizedBox(
-                height: 15,
-              ),
-            ]),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.supervised_user_circle,
+                  color: Colors.white,
+                ),
+              )
+            ],
           ),
-          // SliverFillRemaining => make ListView built the remaining space in the screen not all items at once
-          const RecommendedJobList()
-        ],
-      ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(
+            right: 18,
+            left: 18,
+            top: 65,
+          ),
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            "General Jobs",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontFamily: "Inter",
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              GoRouter.of(context)
+                                  .push(AppRouter.seeAllGeneralJob);
+                            },
+                            child: const Row(
+                              children: [
+                                Text(
+                                  "See All",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                    fontFamily: "Inter",
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 15,
+                                  color: Colors.white,
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      const GeneralJobList(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        "Recommended Jobs",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Inter",
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                    ]),
+              ),
+              // SliverFillRemaining => make ListView built the remaining space in the screen not all items at once
+              const RecommendedJobList()
+            ],
+          ),
+        )
+      ],
     );
   }
 }

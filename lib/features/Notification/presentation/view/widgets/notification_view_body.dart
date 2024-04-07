@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gp_app/constants.dart';
+import 'package:gp_app/core/widgets/custom_app_bar.dart';
 import 'package:gp_app/features/auth/presentation/manager/auth_cubits/auth_cubit.dart';
 import 'package:gp_app/features/chat/domain/chat_servises.dart';
 import 'package:gp_app/features/chat/presentation/view/widgets/chat_view_body.dart';
@@ -18,84 +19,70 @@ class _NotificationViewBodyState extends State<NotificationViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Notifications",
-          style: TextStyle(
-              color: Colors.white, fontSize: 15, fontWeight: FontWeight.w600),
-        ),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color(0xFF78EA79), Color(0xFF3FC3AE)],
-              begin: Alignment.topLeft,
-              end: Alignment.topRight,
-              stops: [0.0, 0.9],
+    return Stack(
+      children: [
+        const CustomAppBar(
+          paddingHorizontal: 20,
+          paddingVertical: 30,
+          widget: Text(
+            "Notifications",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+              fontFamily: "Inter",
             ),
           ),
         ),
-      ),
-      body: Column(
-        children: [
-          Container(
-            height: 30,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(30),
-                  bottomRight: Radius.circular(30)),
-              gradient: LinearGradient(
-                colors: [Color(0xFF78EA79), Color(0xFF3FC3AE)],
-                begin: Alignment.topLeft,
-                end: Alignment.topRight,
-                stops: [0.0, 0.9],
-              ),
-            ),
-            child: const Text(""),
+        Padding(
+          padding: const EdgeInsets.only(
+            right: 18,
+            left: 18,
+            top: 65,
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          StreamBuilder(
-            stream: _chatservisrs.getUserStream(),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return const Text("Error+++++++++++++++++");
-              }
+          child: Column(
+            children: [
+              StreamBuilder(
+                stream: _chatservisrs.getUserStream(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return const Text("Error+++++++++++++++++");
+                  }
 
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Column(
-                  children: [
-                    const SizedBox(height: 220),
-                    Center(
-                      child: LoadingAnimationWidget.waveDots(
-                        size: 30,
-                        color: kPrimaryColor,
-                      ),
-                    ),
-                  ],
-                );
-              }
-
-              return Expanded(
-                child: ListView.builder(
-                  itemCount: 1,
-                  shrinkWrap: true,
-                  itemBuilder: (ctx, i) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
                     return Column(
-                      children: snapshot.data!
-                          .map<Widget>(
-                              (userData) => _element(userData, context))
-                          .toList(),
+                      children: [
+                        const SizedBox(height: 220),
+                        Center(
+                          child: LoadingAnimationWidget.waveDots(
+                            size: 30,
+                            color: kPrimaryColor,
+                          ),
+                        ),
+                      ],
                     );
-                  },
-                ),
-              );
-            },
-          )
-        ],
-      ),
+                  }
+
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: 1,
+                      shrinkWrap: true,
+                      itemBuilder: (ctx, i) {
+                        return Column(
+                          children: snapshot.data!
+                              .map<Widget>(
+                                  (userData) => _element(userData, context))
+                              .toList(),
+                        );
+                      },
+                    ),
+                  );
+                },
+              )
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

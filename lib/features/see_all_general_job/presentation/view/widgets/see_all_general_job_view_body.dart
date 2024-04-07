@@ -11,6 +11,8 @@ class SeeAllGeneralJobViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(children: [
       CustomAppBar(
+        paddingHorizontal: 10,
+        paddingVertical: 10,
         widget: Align(
           alignment: Alignment.topLeft,
           child: IconButton(
@@ -26,7 +28,7 @@ class SeeAllGeneralJobViewBody extends StatelessWidget {
         ),
       ),
       const Padding(
-        padding: EdgeInsets.only(top: 80, left: 10, right: 10),
+        padding: EdgeInsets.only(top: 65, left: 10, right: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

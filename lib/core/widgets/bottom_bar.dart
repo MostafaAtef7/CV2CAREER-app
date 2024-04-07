@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gp_app/core/widgets/custom_app_bar.dart';
 import 'package:gp_app/features/Notification/presentation/view/notification_view.dart';
+import 'package:gp_app/features/auth/presentation/manager/auth_cubits/auth_cubit.dart';
 import 'package:gp_app/features/home/presentation/view/home_view.dart';
+import 'package:gp_app/features/hr_home/presentation/view/hr_home_view.dart';
 import 'package:gp_app/features/setting/presentantion/widgets/setting_view_body.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -13,40 +17,48 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
+  var _currentIndex = 0;
+  late String userType;
+  late Future<bool> isHR;
   List<Widget> screens = [
     const HomeView(),
     const NotificationView(),
     const SettingViewBody(),
   ];
 
-  var _currentIndex = 0;
+  // void retrieveData() async {
+  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  //   userType = sharedPreferences.getString('userType')!;
+  //   setState(() {
+  //     userType = userType;
+  //     screens = [
+  //       userType == "HR" ? const HrHomeView() : const HomeView(),
+  //       const NotificationView(),
+  //       const SettingViewBody(),
+  //     ];
+  //   });
+  // }
+
+  // checkHR() async {
+  //   Future<bool> val;
+  //   String senderID = BlocProvider.of<AuthCubit>(context).getCurrentuser()!.uid;
+  //   val = BlocProvider.of<AuthCubit>(context).checkUserIsHR(senderID);
+
+  //   return val;
+  // }
+
+  @override
+  void initState() {
+    // retrieveData();
+    // checkHR();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    // print("*********************$isHR");
     return Scaffold(
-      body: Stack(children: [
-        CustomAppBar(
-          widget: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                "Hi, Mostafa",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                  fontFamily: "Inter",
-                ),
-              ),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.supervised_user_circle,
-                      color: Colors.white))
-            ],
-          ),
-        ),
-        screens[_currentIndex],
-      ]),
+      body: screens[_currentIndex],
       bottomNavigationBar: Container(
         padding: const EdgeInsets.only(left: 30, right: 30),
         decoration: const BoxDecoration(

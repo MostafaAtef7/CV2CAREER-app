@@ -15,6 +15,8 @@ class JobDescriptionViewBody extends StatelessWidget {
     return Stack(
       children: [
         CustomAppBar(
+          paddingHorizontal: 20,
+          paddingVertical: 10,
           widget: Align(
             alignment: Alignment.topLeft,
             child: IconButton(

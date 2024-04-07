@@ -29,7 +29,7 @@ class _SignUpValidateUserInfoState extends State<SignUpValidateUserInfo> {
 
   String? userType;
 
-  //String? groupValue = 'HR';
+  String? groupValue = 'HR';
 
   bool isLoading = false;
 

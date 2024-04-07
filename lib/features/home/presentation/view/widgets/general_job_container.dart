@@ -12,16 +12,17 @@ class GeneralJobContainer extends StatelessWidget {
         height: 96,
         width: MediaQuery.of(context).size.width * 0.5,
         decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                blurRadius: 5,
-                spreadRadius: 2,
-                offset: const Offset(0, 3),
-              )
-            ]),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              blurRadius: 5,
+              spreadRadius: 2,
+              offset: const Offset(0, 3),
+            )
+          ],
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,

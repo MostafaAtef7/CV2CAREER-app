@@ -6,7 +6,6 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gp_app/core/utils/classes/app_routers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -30,6 +29,7 @@ class AuthCubit extends Cubit<AuthState> {
         {
           'uid': userCredential.user!.uid,
           'email': emailAddress,
+          'isHR': userType == "HR" ? true : false,
         },
       );
       emit(LoginSuccess());
@@ -70,10 +70,12 @@ class AuthCubit extends Cubit<AuthState> {
         {
           'uid': userCredential.user!.uid,
           'email': emailAddress,
+          'isHR': userType == "HR" ? true : false,
         },
       );
 
       // __________________
+
       emit(RegisterSuccess());
       saveSignUpData(
           emailAddress: emailAddress,
@@ -133,4 +135,16 @@ class AuthCubit extends Cubit<AuthState> {
   User? getCurrentuser() {
     return _auth.currentUser;
   }
+
+  // Future<bool> checkUserIsHR(senderId) async {
+  //   // senderId = userCredential.user!.uid;
+  //   List<dynamic> lstOfData = [];
+  //   await _firestore
+  //       .collection("users")
+  //       .doc(senderId)
+  //       .get()
+  //       .then((value) => lstOfData = value.data()!.values.toList());
+  //   // print("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVV${lstOfData[1]}");
+  //   return lstOfData[1];
+  // }
 }

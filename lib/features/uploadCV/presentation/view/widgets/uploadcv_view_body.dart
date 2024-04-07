@@ -21,7 +21,6 @@ var isFinished = false;
 
 class UploadCvState extends State<UploadCvViewBody> {
   uploadCV() async {
-    print("in Fun");
     // Allow the user to pick a file
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
