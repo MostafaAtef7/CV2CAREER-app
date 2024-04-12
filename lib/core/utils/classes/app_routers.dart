@@ -1,8 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gp_app/core/widgets/bottom_bar.dart';
+import 'package:gp_app/features/add_job/presentation/view/add_job_view.dart';
 import 'package:gp_app/features/auth/presentation/manager/auth_cubits/auth_cubit.dart';
 import 'package:gp_app/features/auth/presentation/view/login.dart';
 import 'package:gp_app/features/auth/presentation/view/signup.dart';
@@ -26,6 +26,7 @@ abstract class AppRouter {
   static const String uploadCV = "/uploadcv_View";
   static const String viewCV = "/viewCV";
   static const String seeAllGeneralJob = "/seeAllGeneralJob";
+  static const String addJob = "/AddJobView";
 
   static final router = GoRouter(
     routes: [
@@ -82,6 +83,10 @@ abstract class AppRouter {
       GoRoute(
         path: seeAllGeneralJob,
         builder: (ctx, state) => const SeeAllGeneralJobView(),
+      ),
+      GoRoute(
+        path: addJob,
+        builder: (ctx, state) => const AddJobView(),
       ),
     ],
   );

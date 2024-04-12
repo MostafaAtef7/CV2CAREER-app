@@ -73,7 +73,6 @@ class AuthCubit extends Cubit<AuthState> {
           'isHR': userType == "HR" ? true : false,
         },
       );
-
       // __________________
 
       emit(RegisterSuccess());
@@ -136,15 +135,15 @@ class AuthCubit extends Cubit<AuthState> {
     return _auth.currentUser;
   }
 
-  // Future<bool> checkUserIsHR(senderId) async {
-  //   // senderId = userCredential.user!.uid;
-  //   List<dynamic> lstOfData = [];
-  //   await _firestore
-  //       .collection("users")
-  //       .doc(senderId)
-  //       .get()
-  //       .then((value) => lstOfData = value.data()!.values.toList());
-  //   // print("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVV${lstOfData[1]}");
-  //   return lstOfData[1];
-  // }
+  Future<bool> checkUserIsHR(senderId) async {
+    // senderId = userCredential.user!.uid;
+    List<dynamic> lstOfData = [];
+    await _firestore
+        .collection("users")
+        .doc(senderId)
+        .get()
+        .then((value) => lstOfData = value.data()!.values.toList());
+    // print("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVV${lstOfData[1]}");
+    return lstOfData[1];
+  }
 }

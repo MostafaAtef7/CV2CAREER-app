@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gp_app/core/widgets/custom_app_bar.dart';
@@ -7,7 +8,6 @@ import 'package:gp_app/features/home/presentation/view/home_view.dart';
 import 'package:gp_app/features/hr_home/presentation/view/hr_home_view.dart';
 import 'package:gp_app/features/setting/presentantion/widgets/setting_view_body.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -17,34 +17,30 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   var _currentIndex = 0;
-  late String userType;
-  late Future<bool> isHR;
   List<Widget> screens = [
-    const HomeView(),
+    const HrHomeView(),
     const NotificationView(),
     const SettingViewBody(),
   ];
 
-  // void retrieveData() async {
-  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  //   userType = sharedPreferences.getString('userType')!;
-  //   setState(() {
-  //     userType = userType;
-  //     screens = [
-  //       userType == "HR" ? const HrHomeView() : const HomeView(),
-  //       const NotificationView(),
-  //       const SettingViewBody(),
-  //     ];
-  //   });
-  // }
-
   // checkHR() async {
-  //   Future<bool> val;
+  //   bool isHR;
   //   String senderID = BlocProvider.of<AuthCubit>(context).getCurrentuser()!.uid;
-  //   val = BlocProvider.of<AuthCubit>(context).checkUserIsHR(senderID);
-
-  //   return val;
+  //   print("sender :::: $senderID");
+  //   _firestore.collection('users').doc(senderID).get().then(
+  //     (value) {
+  //       isHR = value.data()!.values.toList()[1];
+  //       print("-------${value.data()!.values.toList()[1]}--------");
+  //       print(isHR);
+  //       screens = [
+  //         isHR ? const HrHomeView() : const HomeView(),
+  //         const NotificationView(),
+  //         const SettingViewBody(),
+  //       ];
+  //     },
+  //   );
   // }
 
   @override
