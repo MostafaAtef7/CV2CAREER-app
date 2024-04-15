@@ -17,6 +17,7 @@ class AuthCubit extends Cubit<AuthState> {
   String? emailAddress;
   String? password;
   String? userType;
+  String? checkHR;
 
   void login({required String emailAddress, required String password}) async {
     emit(LoginLoading());
@@ -32,7 +33,8 @@ class AuthCubit extends Cubit<AuthState> {
           'isHR': userType == "HR" ? true : false,
         },
       );
-      emit(LoginSuccess());
+      await check(emailAddress: emailAddress);
+      emit(LoginSuccess(checkHR: checkHR!));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         emit(LoginFailure(errorMessage: 'No user found for that email.'));
@@ -74,8 +76,9 @@ class AuthCubit extends Cubit<AuthState> {
         },
       );
       // __________________
-
-      emit(RegisterSuccess());
+      await save(emailAddress: emailAddress, userType: userType);
+      await check(emailAddress: emailAddress);
+      emit(RegisterSuccess(checkHR: checkHR!));
       saveSignUpData(
           emailAddress: emailAddress,
           password: password,
@@ -94,6 +97,19 @@ class AuthCubit extends Cubit<AuthState> {
       }
     }
   }
+////////////////////////////////////////////////////////////////////////////////////////////
+  Future<void> save(
+      {required String emailAddress, required String userType}) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString(emailAddress, userType);
+    print('saves Sucess !!!!!!!!!!!!!!');
+  }
+
+  Future<void> check({required String emailAddress}) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    checkHR = sharedPreferences.getString(emailAddress);
+  }
+////////////////////////////////////////////////////////////////////////////////////////////
 
   void saveSignUpData(
       {required String emailAddress,

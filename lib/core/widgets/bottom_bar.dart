@@ -10,17 +10,22 @@ import 'package:gp_app/features/setting/presentantion/widgets/setting_view_body.
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class BottomBar extends StatefulWidget {
-  const BottomBar({super.key});
-
+  const BottomBar({super.key, required this.checkHR});
+  final String checkHR;
   @override
   State<BottomBar> createState() => _BottomBarState();
 }
 
 class _BottomBarState extends State<BottomBar> {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
   var _currentIndex = 0;
-  List<Widget> screens = [
+  List<Widget> hrScreens = [
     const HrHomeView(),
+    const NotificationView(),
+    const SettingViewBody(),
+  ];
+    List<Widget> userScreens = [
+    const HomeView(),
     const NotificationView(),
     const SettingViewBody(),
   ];
@@ -54,7 +59,7 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     // print("*********************$isHR");
     return Scaffold(
-      body: screens[_currentIndex],
+      body: widget.checkHR == "HR" ? hrScreens[_currentIndex] : userScreens[_currentIndex],
       bottomNavigationBar: Container(
         padding: const EdgeInsets.only(left: 30, right: 30),
         decoration: const BoxDecoration(

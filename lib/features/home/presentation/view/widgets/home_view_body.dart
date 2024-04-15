@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gp_app/core/utils/classes/jobs_model.dart';
 import 'package:gp_app/core/widgets/custom_app_bar.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../core/utils/classes/app_routers.dart';
 import 'general_job_list.dart';
 import 'recommended_job_list.dart';
 
 class HomeViewBody extends StatefulWidget {
-  const HomeViewBody({super.key});
+  const HomeViewBody({super.key, required this.jobs});
+  final List<JobsModel> jobs;
 
   @override
   State<HomeViewBody> createState() => _HomeViewBodyState();
@@ -16,15 +17,15 @@ class HomeViewBody extends StatefulWidget {
 class _HomeViewBodyState extends State<HomeViewBody> {
   late String userName = " ";
 
-  void retrieveData() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    userName = sharedPreferences.getString('userName')!;
-    setState(() {});
-  }
+  // void retrieveData() async {
+  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  //   userName = sharedPreferences.getString('userName')!;
+  //   setState(() {});
+  // }
 
   @override
   void initState() {
-    retrieveData();
+    // retrieveData();
     super.initState();
   }
 
@@ -83,8 +84,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              GoRouter.of(context)
-                                  .push(AppRouter.seeAllGeneralJob);
+                              GoRouter.of(context).push(
+                                  AppRouter.seeAllGeneralJob,
+                                  extra: widget.jobs);
                             },
                             child: const Row(
                               children: [

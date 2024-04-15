@@ -31,7 +31,10 @@ class _SignUpBodyState extends State<SignUpBody> {
               context: context,
               quickAlertType: QuickAlertType.success,
               onConfirmBtnTap: () {
-                GoRouter.of(context).push(AppRouter.uploadCV);
+                if(state.checkHR != "HR"){ GoRouter.of(context).push(AppRouter.uploadCV);}
+                else {
+                  GoRouter.of(context).push(AppRouter.bottomBar, extra: state.checkHR);
+                }
               },
               text: 'Registered Successfully !');
 

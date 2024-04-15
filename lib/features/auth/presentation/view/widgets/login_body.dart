@@ -26,7 +26,7 @@ class _LoginBodyState extends State<LoginBody> {
         if (state is LoginLoading) {
           isLoading = true;
         } else if (state is LoginSuccess) {
-          GoRouter.of(context).push(AppRouter.bottomBar);
+          GoRouter.of(context).push(AppRouter.bottomBar, extra: state.checkHR);
           isLoading = false;
         } else if (state is LoginFailure) {
           showQuickAlert(

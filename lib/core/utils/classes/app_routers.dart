@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gp_app/core/utils/classes/jobs_model.dart';
 import 'package:gp_app/core/widgets/bottom_bar.dart';
 import 'package:gp_app/features/add_job/presentation/view/add_job_view.dart';
 import 'package:gp_app/features/auth/presentation/manager/auth_cubits/auth_cubit.dart';
@@ -67,7 +68,7 @@ abstract class AppRouter {
         path: bottomBar,
         builder: (ctx, state) => BlocProvider(
           create: (context) => AuthCubit(),
-          child: const BottomBar(),
+          child:  BottomBar(checkHR: state.extra as String,),
         ),
       ),
       GoRoute(
@@ -82,7 +83,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: seeAllGeneralJob,
-        builder: (ctx, state) => const SeeAllGeneralJobView(),
+        builder: (ctx, state) =>  SeeAllGeneralJobView(jobs: state.extra as List<JobsModel>),
       ),
       GoRoute(
         path: addJob,
