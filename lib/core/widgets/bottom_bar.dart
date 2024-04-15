@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gp_app/core/widgets/custom_app_bar.dart';
 import 'package:gp_app/features/Notification/presentation/view/notification_view.dart';
 import 'package:gp_app/features/auth/presentation/manager/auth_cubits/auth_cubit.dart';
 import 'package:gp_app/features/home/presentation/view/home_view.dart';
 import 'package:gp_app/features/hr_home/presentation/view/hr_home_view.dart';
+import 'package:gp_app/features/setting/presentantion/setting_view.dart';
 import 'package:gp_app/features/setting/presentantion/widgets/setting_view_body.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -22,44 +22,31 @@ class _BottomBarState extends State<BottomBar> {
   List<Widget> hrScreens = [
     const HrHomeView(),
     const NotificationView(),
-    const SettingViewBody(),
+    const SettingView(),
   ];
-    List<Widget> userScreens = [
+  List<Widget> userScreens = [
     const HomeView(),
     const NotificationView(),
-    const SettingViewBody(),
+    const SettingView(),
   ];
-
-  // checkHR() async {
-  //   bool isHR;
-  //   String senderID = BlocProvider.of<AuthCubit>(context).getCurrentuser()!.uid;
-  //   print("sender :::: $senderID");
-  //   _firestore.collection('users').doc(senderID).get().then(
-  //     (value) {
-  //       isHR = value.data()!.values.toList()[1];
-  //       print("-------${value.data()!.values.toList()[1]}--------");
-  //       print(isHR);
-  //       screens = [
-  //         isHR ? const HrHomeView() : const HomeView(),
-  //         const NotificationView(),
-  //         const SettingViewBody(),
-  //       ];
-  //     },
-  //   );
-  // }
 
   @override
   void initState() {
-    // retrieveData();
-    // checkHR();
+    // signOutz();
     super.initState();
+  }
+
+  Future<void> signOutz() async {
+    await BlocProvider.of<AuthCubit>(context).signOut;
   }
 
   @override
   Widget build(BuildContext context) {
-    // print("*********************$isHR");
+    print(widget.checkHR + "*********************");
     return Scaffold(
-      body: widget.checkHR == "HR" ? hrScreens[_currentIndex] : userScreens[_currentIndex],
+      body: widget.checkHR == "HR"
+          ? hrScreens[_currentIndex]
+          : userScreens[_currentIndex],
       bottomNavigationBar: Container(
         padding: const EdgeInsets.only(left: 30, right: 30),
         decoration: const BoxDecoration(

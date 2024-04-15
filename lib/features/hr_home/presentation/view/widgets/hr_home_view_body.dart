@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:gp_app/constants.dart';
 import 'package:gp_app/core/utils/classes/app_routers.dart';
 import 'package:gp_app/core/widgets/custom_app_bar.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HrHomeViewBody extends StatefulWidget {
   const HrHomeViewBody({super.key});
@@ -15,15 +14,8 @@ class HrHomeViewBody extends StatefulWidget {
 class _HrHomeViewBodyState extends State<HrHomeViewBody> {
   late String userName = " ";
 
-  void retrieveData() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    userName = sharedPreferences.getString('userName')!;
-    setState(() {});
-  }
-
   @override
   void initState() {
-    retrieveData();
     super.initState();
   }
 
@@ -57,7 +49,7 @@ class _HrHomeViewBodyState extends State<HrHomeViewBody> {
           ),
         ),
         Padding(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               right: 18,
               left: 18,
               top: 100,

@@ -14,7 +14,7 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
 
   String? userName;
-  String? emailAddress;
+  String? email;
   String? password;
   String? userType;
   String? checkHR;
@@ -78,12 +78,13 @@ class AuthCubit extends Cubit<AuthState> {
       // __________________
       await save(emailAddress: emailAddress, userType: userType);
       await check(emailAddress: emailAddress);
+      print(checkHR! + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
       emit(RegisterSuccess(checkHR: checkHR!));
-      saveSignUpData(
-          emailAddress: emailAddress,
-          password: password,
-          userName: userName,
-          userType: userType);
+      // saveSignUpData(
+      //     emailAddress: emailAddress,
+      //     password: password,
+      //     userName: userName,
+      //     userType: userType);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         emit(RegisterFailure(
@@ -111,30 +112,30 @@ class AuthCubit extends Cubit<AuthState> {
   }
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-  void saveSignUpData(
-      {required String emailAddress,
-      required String password,
-      required String userName,
-      required String userType}) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setString('userName', userName);
-    sharedPreferences.setString('emailAddress', emailAddress);
-    sharedPreferences.setString('password', password);
-    sharedPreferences.setString('userType', userType);
-    print('saves Sucess');
-  }
+  // void saveSignUpData(
+  //     {required String emailAddress,
+  //     required String password,
+  //     required String userName,
+  //     required String userType}) async {
+  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  //   sharedPreferences.setString('userName', userName);
+  //   sharedPreferences.setString('emailAddress', emailAddress);
+  //   sharedPreferences.setString('password', password);
+  //   sharedPreferences.setString('userType', userType);
+  //   print('saves Sucess');
+  // }
 
-  void retrieveData() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    userName = sharedPreferences.getString('userName');
-    emailAddress = sharedPreferences.getString('emailAddress');
-    password = sharedPreferences.getString('password');
-    userType = sharedPreferences.getString('userType');
-    print('userName : $userName');
-    print('email $emailAddress');
-    print('password $password');
-    print('userType $userType');
-  }
+  // void retrieveData() async {
+  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  //   userName = sharedPreferences.getString('userName');
+  //   email = sharedPreferences.getString('emailAddress');
+  //   password = sharedPreferences.getString('password');
+  //   userType = sharedPreferences.getString('userType');
+  //   print('userName : $userName');
+  //   print('email $email');
+  //   print('password $password');
+  //   print('userType $userType');
+  // }
 
   void signOut(BuildContext context) async {
     await FirebaseAuth.instance.signOut();

@@ -8,6 +8,7 @@ import 'package:gp_app/features/auth/presentation/manager/auth_cubits/auth_cubit
 import 'package:gp_app/features/auth/presentation/view/login.dart';
 import 'package:gp_app/features/auth/presentation/view/signup.dart';
 import 'package:gp_app/features/cv_view/presentation/view/cv_view.dart';
+import 'package:gp_app/features/edit_profile/presentation/views/edit_profile_view.dart';
 import 'package:gp_app/features/job_description/presentation/view/job_descrption_view.dart';
 import 'package:gp_app/features/home/presentation/view/home_view.dart';
 import 'package:gp_app/features/onboarding/presentation/view/onboarding.dart';
@@ -28,6 +29,7 @@ abstract class AppRouter {
   static const String viewCV = "/viewCV";
   static const String seeAllGeneralJob = "/seeAllGeneralJob";
   static const String addJob = "/AddJobView";
+  static const String editProfile = "/editProfile";
 
   static final router = GoRouter(
     routes: [
@@ -68,12 +70,14 @@ abstract class AppRouter {
         path: bottomBar,
         builder: (ctx, state) => BlocProvider(
           create: (context) => AuthCubit(),
-          child:  BottomBar(checkHR: state.extra as String,),
+          child: BottomBar(
+            checkHR: state.extra as String,
+          ),
         ),
       ),
       GoRoute(
         path: uploadCV,
-        builder: (ctx, state) => const UploadCvView(),
+        builder: (ctx, state) =>  UploadCvView(checkHR: state.extra as String),
       ),
       GoRoute(
         path: viewCV,
@@ -83,11 +87,16 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: seeAllGeneralJob,
-        builder: (ctx, state) =>  SeeAllGeneralJobView(jobs: state.extra as List<JobsModel>),
+        builder: (ctx, state) =>
+            SeeAllGeneralJobView(jobs: state.extra as List<JobsModel>),
       ),
       GoRoute(
         path: addJob,
         builder: (ctx, state) => const AddJobView(),
+      ),
+      GoRoute(
+        path: editProfile,
+        builder: (ctx, state) => const EditProfileView(),
       ),
     ],
   );

@@ -34,12 +34,17 @@ class _HomeViewState extends State<HomeView> {
           jobs = state.jobs;
           isLoading = false;
         } else if (state is HomeFailure) {
-
           isLoading = false;
         }
       },
       builder: (context, state) {
-        return isLoading? const Center(child: CircularProgressIndicator(color: Colors.green,),):HomeViewBody(jobs: jobs);
+        return isLoading
+            ? const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.green,
+                ),
+              )
+            : HomeViewBody(jobs: jobs);
       },
     );
   }

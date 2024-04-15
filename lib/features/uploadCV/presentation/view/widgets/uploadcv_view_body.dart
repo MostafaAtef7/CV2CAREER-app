@@ -10,7 +10,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 
 class UploadCvViewBody extends StatefulWidget {
-  const UploadCvViewBody({super.key});
+  const UploadCvViewBody({super.key, required this.checkHR});
+  final String checkHR;
 
   @override
   State<UploadCvViewBody> createState() => UploadCvState();
@@ -63,24 +64,24 @@ class UploadCvState extends State<UploadCvViewBody> {
       //_______________________
 
       // Send the request
-      var response = await request.send();
+      // var response = await request.send();
 
-      if (response.statusCode == 200) {
-        // File uploaded successfully
-        var responseBody = await response.stream.bytesToString();
+      // if (response.statusCode == 200) {
+      //   // File uploaded successfully
+      //   var responseBody = await response.stream.bytesToString();
 
-        print(responseBody); // Print the response from the server
+      //   print(responseBody); // Print the response from the server
 
-        setState(() {
-          isClick = 2; // Set success state
-        });
-      } else {
-        // Error uploading file
-        print('Failed to upload file');
-        setState(() {
-          isClick = 0; // Reset button state
-        });
-      }
+      //   setState(() {
+      //     isClick = 2; // Set success state
+      //   });
+      // } else {
+      //   // Error uploading file
+      //   print('Failed to upload file');
+      //   setState(() {
+      //     isClick = 0; // Reset button state
+      //   });
+      // }
     } else {
       // User canceled the file picking
       print('No file selected.');
@@ -214,7 +215,7 @@ class UploadCvState extends State<UploadCvViewBody> {
                       });
                     },
                     onFinish: () async {
-                      GoRouter.of(context).push(AppRouter.bottomBar);
+                      GoRouter.of(context).push(AppRouter.bottomBar, extra: widget.checkHR);
                       setState(() {
                         isFinished = false;
                       });
