@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gp_app/constants.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -9,17 +10,20 @@ class CustomTextFormField extends StatelessWidget {
     required this.onChanged,
     required this.validator,
     @required this.controller,
-    this.obsureText = false,
+    required this.isPassword,
   });
+
   final String hintText;
   final Icon suffixIcon;
-  final bool obsureText;
   final Function(String)? onSumbitted;
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
+  final bool isPassword;
+
   @override
   Widget build(BuildContext context) {
+    bool obsureText = isPassword;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
@@ -28,6 +32,8 @@ class CustomTextFormField extends StatelessWidget {
         onFieldSubmitted: onSumbitted,
         validator: validator,
         obscureText: obsureText,
+        cursorColor: kPrimaryColor,
+        obscuringCharacter: '●',
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: const TextStyle(color: Colors.grey, fontSize: 15),

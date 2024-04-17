@@ -26,31 +26,6 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        CustomAppBar(
-          paddingHorizontal: 20,
-          paddingVertical: 10,
-          widget: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Hi, $userName",
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                  fontFamily: "Inter",
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.supervised_user_circle,
-                  color: Colors.white,
-                ),
-              )
-            ],
-          ),
-        ),
         Padding(
           padding: const EdgeInsets.only(
             right: 18,

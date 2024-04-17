@@ -15,7 +15,7 @@ class RecommendedJobList extends StatelessWidget {
           width: 15,
         ),
         itemBuilder: (ctx, index) {
-          return jobs[index].jobTitle!.toLowerCase() == "web developer"
+          return jobs[index].jobTitle!.toLowerCase() == "full stack developer"
               ? RecommendedJobContainer(job: jobs[index])
               : const SizedBox.shrink();
         },

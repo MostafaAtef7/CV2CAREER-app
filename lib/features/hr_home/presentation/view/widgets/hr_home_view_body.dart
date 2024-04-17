@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gp_app/constants.dart';
 import 'package:gp_app/core/utils/classes/app_routers.dart';
+import 'package:gp_app/core/utils/classes/assets.dart';
 import 'package:gp_app/core/utils/classes/database.dart';
 import 'package:gp_app/core/widgets/custom_app_bar.dart';
 import 'package:gp_app/features/add_job/presentation/view/widgets/hr_job_container.dart';
@@ -18,15 +19,8 @@ class _HrHomeViewBodyState extends State<HrHomeViewBody> {
   late String userName = " ";
   final Database _dataservises = Database();
 
-  // void retrieveData() async {
-  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  //   userName = sharedPreferences.getString('userName')!;
-  //   setState(() {});
-  // }
-
   @override
   void initState() {
-    // retrieveData();
     super.initState();
   }
 
@@ -99,30 +93,42 @@ class _HrHomeViewBodyState extends State<HrHomeViewBody> {
                         ],
                       );
                     }
-
-                    return Expanded(
-                      child: ListView.builder(
-                        itemCount: 1,
-                        shrinkWrap: true,
-                        itemBuilder: (ctx, i) {
-                          return Column(
-                            children: snapshot.data!
-                                .map<Widget>(
-                                  (userData) => HrJobContainer(
-                                    companyName: userData["company"],
-                                    description: userData["job_description"],
-                                    jobName: userData["job_title"],
-                                    requirement: userData["job_requirement"],
-                                    salary: userData["salary"],
-                                    skills: userData["skills"],
-                                    type: userData["job_type"],
-                                  ),
-                                )
-                                .toList(),
-                          );
-                        },
-                      ),
-                    );
+                    if (snapshot.data!.length == 0) {
+                      return Container(
+                        padding: EdgeInsets.only(top: 90),
+                        child: Center(
+                          child: Image.asset(
+                            AssetsData.addNewJob,
+                            height: 230,
+                            width: 230,
+                          ),
+                        ),
+                      );
+                    } else {
+                      return Expanded(
+                        child: ListView.builder(
+                          itemCount: 1,
+                          shrinkWrap: true,
+                          itemBuilder: (ctx, i) {
+                            return Column(
+                              children: snapshot.data!
+                                  .map<Widget>(
+                                    (userData) => HrJobContainer(
+                                      companyName: userData["company"],
+                                      description: userData["job_description"],
+                                      jobName: userData["job_title"],
+                                      requirement: userData["job_requirement"],
+                                      salary: userData["salary"],
+                                      skills: userData["skills"],
+                                      type: userData["job_type"],
+                                    ),
+                                  )
+                                  .toList(),
+                            );
+                          },
+                        ),
+                      );
+                    }
                   },
                 )
               ],

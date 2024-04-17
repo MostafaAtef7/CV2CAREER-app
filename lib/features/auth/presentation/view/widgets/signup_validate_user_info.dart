@@ -51,6 +51,7 @@ class _SignUpValidateUserInfoState extends State<SignUpValidateUserInfo> {
             children: [
               const CustomText(text: 'User Name'),
               CustomTextFormField(
+                isPassword: false,
                 hintText: 'Your Name ',
                 suffixIcon: const Icon(
                   Icons.person,
@@ -72,6 +73,7 @@ class _SignUpValidateUserInfoState extends State<SignUpValidateUserInfo> {
               ),
               const CustomText(text: 'Email'),
               CustomTextFormField(
+                isPassword: false,
                 hintText: 'Your Email Address',
                 suffixIcon: const Icon(
                   Icons.mail,
@@ -97,6 +99,7 @@ class _SignUpValidateUserInfoState extends State<SignUpValidateUserInfo> {
               ),
               const CustomText(text: 'Password'),
               CustomTextFormField(
+                isPassword: true,
                 controller: passwordController,
                 hintText: '********',
                 suffixIcon: const Icon(
@@ -121,6 +124,7 @@ class _SignUpValidateUserInfoState extends State<SignUpValidateUserInfo> {
               ),
               const CustomText(text: 'Confirm Password'),
               CustomTextFormField(
+                isPassword: true,
                 controller: confirmPasswordController,
                 hintText: '********',
                 suffixIcon: const Icon(

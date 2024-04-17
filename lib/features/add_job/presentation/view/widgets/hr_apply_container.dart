@@ -1,5 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gp_app/constants.dart';
+import 'package:gp_app/core/utils/classes/app_routers.dart';
 import 'package:gp_app/core/utils/classes/jobs_model.dart';
 import 'package:gp_app/core/widgets/defaultbutton.dart';
 import 'package:gp_app/features/job_description/presentation/view/widgets/text_component.dart';
@@ -70,76 +75,41 @@ class HrApplyContainer extends StatelessWidget {
             ],
           ),
           DefaultButton(
-            text: "Apply",
+            text: "Delete Job",
             onPressed: () {
-              showDialog<void>(
-                context: context,
-                barrierDismissible: false, // user must tap button!
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              'Alert',
-                              style: TextStyle(fontSize: 17),
-                            ),
-                            GestureDetector(
-                              child: const Icon(
-                                Icons.close,
-                                size: 20,
-                              ),
-                              onTap: () {
-                                Navigator.of(context).pop();
-                              },
-                            )
-                          ],
-                        ),
-                        const Divider(
-                          color: unSelectedColor,
-                          height: 15,
-                        ),
-                      ],
-                    ),
-                    content: const SingleChildScrollView(
-                      child: ListBody(
-                        children: <Widget>[
-                          Text('Your CV will be sent once you click OK'),
-                        ],
-                      ),
-                    ),
-                    actions: <Widget>[
-                      Container(
-                        height: 40,
-                        width: 100,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(25)),
-                          gradient: LinearGradient(
-                            colors: [kSecondColor, kPrimaryColor],
-                            begin: Alignment.topLeft,
-                            end: Alignment.topRight,
-                            stops: [0.0, 0.9],
-                          ),
-                        ),
-                        child: TextButton(
-                          child: const Text('Apply',
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                  fontSize: 13)),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                            // Send CV to HR
-                            // _______________________________*
-                          },
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              );
+              String id = FirebaseAuth.instance.currentUser!.uid;
+              // realTime
+              DatabaseReference ref = FirebaseDatabase.instance.ref("jobs/$id");
+              ref.remove();
+              // firestore
+              Future<void> deleteSubcollections(String documentPath) async {
+                final QuerySnapshot querySnapshot = await FirebaseFirestore
+                    .instance
+                    .collection(
+                        documentPath) // Reference the subcollection directly
+                    .get();
+
+                final List<Future<void>> futures = [];
+
+                for (final QueryDocumentSnapshot doc in querySnapshot.docs) {
+                  futures.add(doc.reference.delete());
+                }
+
+                await Future.wait(futures);
+              }
+
+              Future<void> deleteDocumentAndSubcollections(
+                  String documentPath) async {
+                // Delete documents in subcollections
+                await deleteSubcollections(documentPath);
+
+                // Delete the parent document
+                await FirebaseFirestore.instance.doc(documentPath).delete();
+              }
+
+              deleteDocumentAndSubcollections("Posts/$id/Post");
+
+              Navigator.pop(context);
             },
           )
         ],

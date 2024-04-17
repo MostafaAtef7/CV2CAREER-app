@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:gp_app/features/Notification/presentation/view/notification_view.dart';
 import 'package:gp_app/features/home/presentation/view/home_view.dart';
+import 'package:gp_app/features/home/presentation/view/widgets/ats_format.dart';
+import 'package:gp_app/features/hr_cv_filteration/presentation/view/hr_cv_filteration_view.dart.dart';
 import 'package:gp_app/features/hr_home/presentation/view/hr_home_view.dart';
 import 'package:gp_app/features/setting/presentantion/setting_view.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -18,12 +19,14 @@ class _BottomBarState extends State<BottomBar> {
   var _currentIndex = 0;
   List<Widget> hrScreens = [
     const HrHomeView(),
-    const NotificationView(),
+    // const NotificationView(),
+    const HrCvFilterationView(),
     const SettingView(),
   ];
   List<Widget> userScreens = [
     const HomeView(),
-    const NotificationView(),
+    // const NotificationView(),
+    const AtsFormat(),
     const SettingView(),
   ];
 
@@ -62,7 +65,7 @@ class _BottomBarState extends State<BottomBar> {
               selectedColor: Colors.white,
             ),
             SalomonBottomBarItem(
-              icon: const Icon(Icons.notifications),
+              icon: const Icon(Icons.document_scanner),
               title: const Text(""),
               selectedColor: Colors.white,
             ),

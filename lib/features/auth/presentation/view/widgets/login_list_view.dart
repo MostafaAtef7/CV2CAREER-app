@@ -43,6 +43,7 @@ class _LoginListViewState extends State<LoginListView> {
                   children: [
                     const CustomText(text: 'Email'),
                     CustomTextFormField(
+                      isPassword: false,
                       onSumbitted: (value) {
                         emailAddress = value;
                       },
@@ -68,6 +69,7 @@ class _LoginListViewState extends State<LoginListView> {
                     ),
                     const CustomText(text: 'Password'),
                     CustomTextFormField(
+                      isPassword: true,
                       onSumbitted: (value) {
                         password = value;
                       },

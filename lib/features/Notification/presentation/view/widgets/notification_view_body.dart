@@ -43,7 +43,7 @@ class _NotificationViewBodyState extends State<NotificationViewBody> {
           child: Column(
             children: [
               StreamBuilder(
-                stream: _chatservisrs.getUserStream(),
+                stream: _chatservisrs.getUserStream2(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return const Text("Error+++++++++++++++++");
@@ -62,7 +62,7 @@ class _NotificationViewBodyState extends State<NotificationViewBody> {
                       ],
                     );
                   }
-
+                  // return SizedBox();
                   return Expanded(
                     child: ListView.builder(
                       itemCount: 1,

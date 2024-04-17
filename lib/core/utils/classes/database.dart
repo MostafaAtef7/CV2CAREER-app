@@ -40,9 +40,12 @@ class Database {
       required String? jobDescription,
       required String? jobResponsibilities,
       required String? jobRequirement}) async {
-    final DatabaseReference addDatabase = FirebaseDatabase.instance.ref("jobs");
-    final DatabaseReference newJobRef = addDatabase.push();
-    await newJobRef.set({
+    String id = FirebaseAuth.instance.currentUser!.uid!;
+    print("email ::: $id");
+    final DatabaseReference addDatabase =
+        FirebaseDatabase.instance.ref("jobs/$id");
+
+    await addDatabase.set({
       "job_title": jobTitle,
       "job_requirement": jobRequirement,
       "job_description": jobDescription,

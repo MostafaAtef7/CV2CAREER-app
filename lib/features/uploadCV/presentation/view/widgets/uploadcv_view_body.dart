@@ -108,8 +108,6 @@ class UploadCvState extends State<UploadCvViewBody> {
                   AssetsData.uploadCVImage,
                   width: 200,
                 ),
-                const Text("Upload Your CV",
-                    style: TextStyle(fontWeight: FontWeight.w800)),
               ],
             ),
           ),
@@ -118,6 +116,8 @@ class UploadCvState extends State<UploadCvViewBody> {
               if (isClick == 0)
                 Column(
                   children: [
+                    const Text("Upload Your CV",
+                        style: TextStyle(fontWeight: FontWeight.w800)),
                     const SizedBox(height: 40),
                     SizedBox(
                         height: 80,
