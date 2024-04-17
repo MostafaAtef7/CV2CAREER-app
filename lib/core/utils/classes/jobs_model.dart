@@ -60,5 +60,4 @@ class JobsModel {
         'job_responsibilities': jobResponsibilities,
         'job_requirement': jobRequirement,
       };
-
 }

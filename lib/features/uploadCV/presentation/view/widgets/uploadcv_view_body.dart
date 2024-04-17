@@ -17,10 +17,10 @@ class UploadCvViewBody extends StatefulWidget {
   State<UploadCvViewBody> createState() => UploadCvState();
 }
 
-var isClick = 0;
-var isFinished = false;
-
 class UploadCvState extends State<UploadCvViewBody> {
+  var isClick = 0;
+  var isFinished = false;
+
   uploadCV() async {
     // Allow the user to pick a file
     FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -99,10 +99,9 @@ class UploadCvState extends State<UploadCvViewBody> {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            padding: const EdgeInsets.only(top: 70),
+            padding: const EdgeInsets.only(top: 80),
             child: Column(
               children: [
                 Image.asset(
@@ -182,7 +181,7 @@ class UploadCvState extends State<UploadCvViewBody> {
               else if (isClick == 1)
                 Column(
                   children: [
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 60),
                     Center(
                       child: LoadingAnimationWidget.inkDrop(
                         size: 30,
@@ -215,7 +214,8 @@ class UploadCvState extends State<UploadCvViewBody> {
                       });
                     },
                     onFinish: () async {
-                      GoRouter.of(context).push(AppRouter.bottomBar, extra: widget.checkHR);
+                      GoRouter.of(context)
+                          .push(AppRouter.bottomBar, extra: widget.checkHR);
                       setState(() {
                         isFinished = false;
                       });

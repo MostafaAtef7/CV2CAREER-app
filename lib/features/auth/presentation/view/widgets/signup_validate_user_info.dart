@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gp_app/constants.dart';
 import 'package:gp_app/core/widgets/custom_buttom.dart';
 
 import '../../manager/auth_cubits/auth_cubit.dart';
@@ -44,90 +45,110 @@ class _SignUpValidateUserInfoState extends State<SignUpValidateUserInfo> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const CustomText(text: 'User Name'),
-        CustomTextFormField(
-          hintText: 'Your Name ',
-          suffixIcon: const Icon(Icons.person),
-          onSumbitted: (value) {
-            userName = value;
-          },
-          onChanged: (value) {
-            userName = value;
-          },
-          validator: (value) {
-            if (value!.isEmpty) {
-              return 'Field is required';
-            }
-            return null;
-          },
-          controller: null,
-        ),
-        const CustomText(text: 'Email'),
-        CustomTextFormField(
-          hintText: 'Your Email Address',
-          suffixIcon: const Icon(Icons.mail),
-          onSumbitted: (value) {
-            emailAddress = value;
-          },
-          onChanged: (value) {
-            emailAddress = value;
-          },
-          validator: (value) {
-            if (value!.isEmpty) {
-              return 'Field is required';
-            }
-            if (!RegExp("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-z]")
-                .hasMatch(value)) {
-              return 'Invalid Email';
-            }
-            return null;
-          },
-          controller: null,
-        ),
-        const CustomText(text: 'Password'),
-        CustomTextFormField(
-          controller: passwordController,
-          hintText: '********',
-          suffixIcon: const Icon(Icons.lock),
-          onSumbitted: (value) {
-            password = value;
-          },
-          onChanged: (value) {
-            password = value;
-          },
-          validator: (value) {
-            if (value!.isEmpty) {
-              return 'Field is required';
-            }
-            if (value.length < 6) {
-              return 'Password must be at least 6 characters';
-            }
-            return null;
-          },
-        ),
-        const CustomText(text: 'Confirm Password'),
-        CustomTextFormField(
-          controller: confirmPasswordController,
-          hintText: '********',
-          suffixIcon: const Icon(Icons.lock),
-          onSumbitted: (value) {
-            confirmPassword = value;
-          },
-          onChanged: (value) {
-            confirmPassword = value;
-          },
-          validator: (value) {
-            if (value!.isEmpty) {
-              return 'Field is required';
-            }
+        Container(
+          margin: const EdgeInsets.only(left: 18, right: 18),
+          child: Column(
+            children: [
+              const CustomText(text: 'User Name'),
+              CustomTextFormField(
+                hintText: 'Your Name ',
+                suffixIcon: const Icon(
+                  Icons.person,
+                  color: kPrimaryColor,
+                ),
+                onSumbitted: (value) {
+                  userName = value;
+                },
+                onChanged: (value) {
+                  userName = value;
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Field is required';
+                  }
+                  return null;
+                },
+                controller: null,
+              ),
+              const CustomText(text: 'Email'),
+              CustomTextFormField(
+                hintText: 'Your Email Address',
+                suffixIcon: const Icon(
+                  Icons.mail,
+                  color: kPrimaryColor,
+                ),
+                onSumbitted: (value) {
+                  emailAddress = value;
+                },
+                onChanged: (value) {
+                  emailAddress = value;
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Field is required';
+                  }
+                  if (!RegExp("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-z]")
+                      .hasMatch(value)) {
+                    return 'Invalid Email';
+                  }
+                  return null;
+                },
+                controller: null,
+              ),
+              const CustomText(text: 'Password'),
+              CustomTextFormField(
+                controller: passwordController,
+                hintText: '********',
+                suffixIcon: const Icon(
+                  Icons.lock,
+                  color: kPrimaryColor,
+                ),
+                onSumbitted: (value) {
+                  password = value;
+                },
+                onChanged: (value) {
+                  password = value;
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Field is required';
+                  }
+                  if (value.length < 6) {
+                    return 'Password must be at least 6 characters';
+                  }
+                  return null;
+                },
+              ),
+              const CustomText(text: 'Confirm Password'),
+              CustomTextFormField(
+                controller: confirmPasswordController,
+                hintText: '********',
+                suffixIcon: const Icon(
+                  Icons.lock,
+                  color: kPrimaryColor,
+                ),
+                onSumbitted: (value) {
+                  confirmPassword = value;
+                },
+                onChanged: (value) {
+                  confirmPassword = value;
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Field is required';
+                  }
 
-            if (passwordController.text != confirmPasswordController.text) {
-              return 'Password doesn\'t match';
-            }
-            return null;
-          },
+                  if (passwordController.text !=
+                      confirmPasswordController.text) {
+                    return 'Password doesn\'t match';
+                  }
+                  return null;
+                },
+              ),
+              const CustomRadioButton(),
+            ],
+          ),
         ),
-        const CustomRadioButton(),
         Padding(
           padding: const EdgeInsets.all(14.0),
           child: CustomButton(

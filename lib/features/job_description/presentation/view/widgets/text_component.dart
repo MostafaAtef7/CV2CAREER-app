@@ -11,6 +11,8 @@ class TextComponent extends StatelessWidget {
     return Text(
       txt,
       style: TextStyle(fontWeight: fontW, fontFamily: "Inter"),
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

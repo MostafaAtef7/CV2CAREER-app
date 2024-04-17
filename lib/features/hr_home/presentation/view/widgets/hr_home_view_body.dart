@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gp_app/constants.dart';
 import 'package:gp_app/core/utils/classes/app_routers.dart';
+import 'package:gp_app/core/utils/classes/database.dart';
 import 'package:gp_app/core/widgets/custom_app_bar.dart';
+import 'package:gp_app/features/add_job/presentation/view/widgets/hr_job_container.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class HrHomeViewBody extends StatefulWidget {
   const HrHomeViewBody({super.key});
@@ -13,9 +16,17 @@ class HrHomeViewBody extends StatefulWidget {
 
 class _HrHomeViewBodyState extends State<HrHomeViewBody> {
   late String userName = " ";
+  final Database _dataservises = Database();
+
+  // void retrieveData() async {
+  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  //   userName = sharedPreferences.getString('userName')!;
+  //   setState(() {});
+  // }
 
   @override
   void initState() {
+    // retrieveData();
     super.initState();
   }
 
@@ -49,24 +60,75 @@ class _HrHomeViewBodyState extends State<HrHomeViewBody> {
           ),
         ),
         Padding(
-            padding: const EdgeInsets.only(
-              right: 18,
-              left: 18,
-              top: 100,
-            ),
-            child: Scaffold(
-              floatingActionButton: FloatingActionButton(
-                backgroundColor: kPrimaryColor,
-                elevation: 0,
-                child: const Icon(
-                  Icons.add,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  GoRouter.of(context).push(AppRouter.addJob);
-                },
+          padding: const EdgeInsets.only(
+            right: 18,
+            left: 18,
+            top: 100,
+          ),
+          child: Scaffold(
+            floatingActionButton: FloatingActionButton(
+              backgroundColor: kPrimaryColor,
+              elevation: 0,
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
               ),
-            )),
+              onPressed: () {
+                GoRouter.of(context).push(AppRouter.addJob);
+              },
+            ),
+            body: Column(
+              children: [
+                StreamBuilder(
+                  stream: _dataservises.getUserStream(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return const Text("Error+++++++++++++++++");
+                    }
+
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Column(
+                        children: [
+                          const SizedBox(height: 220),
+                          Center(
+                            child: LoadingAnimationWidget.waveDots(
+                              size: 30,
+                              color: kPrimaryColor,
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+
+                    return Expanded(
+                      child: ListView.builder(
+                        itemCount: 1,
+                        shrinkWrap: true,
+                        itemBuilder: (ctx, i) {
+                          return Column(
+                            children: snapshot.data!
+                                .map<Widget>(
+                                  (userData) => HrJobContainer(
+                                    companyName: userData["company"],
+                                    description: userData["job_description"],
+                                    jobName: userData["job_title"],
+                                    requirement: userData["job_requirement"],
+                                    salary: userData["salary"],
+                                    skills: userData["skills"],
+                                    type: userData["job_type"],
+                                  ),
+                                )
+                                .toList(),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                )
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }

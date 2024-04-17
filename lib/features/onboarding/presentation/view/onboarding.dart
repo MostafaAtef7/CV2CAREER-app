@@ -69,8 +69,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           )),
                   const Spacer(),
                   SizedBox(
-                    height: 60,
-                    width: 60,
+                    height: 55,
+                    width: 55,
                     child: Container(
                       decoration: const BoxDecoration(
                         color: kPrimaryColor,

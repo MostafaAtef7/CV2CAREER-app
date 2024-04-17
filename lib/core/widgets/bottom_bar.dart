@@ -1,12 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gp_app/features/Notification/presentation/view/notification_view.dart';
-import 'package:gp_app/features/auth/presentation/manager/auth_cubits/auth_cubit.dart';
 import 'package:gp_app/features/home/presentation/view/home_view.dart';
 import 'package:gp_app/features/hr_home/presentation/view/hr_home_view.dart';
 import 'package:gp_app/features/setting/presentantion/setting_view.dart';
-import 'package:gp_app/features/setting/presentantion/widgets/setting_view_body.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class BottomBar extends StatefulWidget {
@@ -32,17 +29,12 @@ class _BottomBarState extends State<BottomBar> {
 
   @override
   void initState() {
-    // signOutz();
     super.initState();
-  }
-
-  Future<void> signOutz() async {
-    await BlocProvider.of<AuthCubit>(context).signOut;
   }
 
   @override
   Widget build(BuildContext context) {
-    print(widget.checkHR + "*********************");
+    print("${widget.checkHR}*********************");
     return Scaffold(
       body: widget.checkHR == "HR"
           ? hrScreens[_currentIndex]

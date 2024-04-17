@@ -14,7 +14,7 @@ class CustomText extends StatelessWidget {
             style: const TextStyle(color: Colors.black),
           ),
           const Text(
-            '*',
+            ' *',
             style: TextStyle(color: Colors.red),
           )
         ],

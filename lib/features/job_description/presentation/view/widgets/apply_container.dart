@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gp_app/constants.dart';
+import 'package:gp_app/core/utils/classes/jobs_model.dart';
 import 'package:gp_app/core/widgets/defaultbutton.dart';
 import 'package:gp_app/features/job_description/presentation/view/widgets/text_component.dart';
 
 class ApplyContainer extends StatelessWidget {
-  const ApplyContainer({super.key});
+  final JobsModel job;
+  const ApplyContainer({super.key, required this.job});
 
   @override
   Widget build(BuildContext context) {
@@ -28,31 +30,35 @@ class ApplyContainer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const TextComponent(txt: "Name Job", fontW: FontWeight.w600),
+          TextComponent(txt: job.jobTitle ?? "N/A", fontW: FontWeight.w600),
           const SizedBox(height: 10),
-          const Row(
+          Row(
             children: [
-              TextComponent(txt: "Location", fontW: FontWeight.w300),
-              SizedBox(
+              const TextComponent(txt: "Type", fontW: FontWeight.w300),
+              const SizedBox(
                 child: Text(
                   " - ",
                   style: TextStyle(fontWeight: FontWeight.w300),
                 ),
               ),
-              TextComponent(txt: "Type", fontW: FontWeight.w300),
+              TextComponent(txt: job.jobType ?? "N/A", fontW: FontWeight.w300),
             ],
           ),
           const SizedBox(height: 7),
-          const Row(
+          Row(
             children: [
-              TextComponent(txt: "Deadline", fontW: FontWeight.w300),
-              SizedBox(
+              const TextComponent(txt: "Salary", fontW: FontWeight.w300),
+              const SizedBox(
                 child: Text(
                   " - ",
                   style: TextStyle(fontWeight: FontWeight.w300),
                 ),
               ),
-              TextComponent(txt: "Salary", fontW: FontWeight.w300),
+              SizedBox(
+                width: 200,
+                child: TextComponent(
+                    txt: job.salary ?? "N?A", fontW: FontWeight.w300),
+              )
             ],
           ),
           DefaultButton(

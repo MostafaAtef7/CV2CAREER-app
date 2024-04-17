@@ -44,7 +44,8 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: jobDescription,
-        builder: (ctx, state) => const JobDescriptionView(),
+        builder: (ctx, state) =>
+            JobDescriptionView(job: state.extra as JobsModel),
       ),
       GoRoute(
         path: onboarding,
@@ -77,7 +78,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: uploadCV,
-        builder: (ctx, state) =>  UploadCvView(checkHR: state.extra as String),
+        builder: (ctx, state) => UploadCvView(checkHR: state.extra as String),
       ),
       GoRoute(
         path: viewCV,

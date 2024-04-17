@@ -9,8 +9,8 @@ class SeeAllGeneralJobView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SeeAllGeneralJobViewBody(),
+    return Scaffold(
+      body: SeeAllGeneralJobViewBody(jobs: jobs),
     );
   }
 }

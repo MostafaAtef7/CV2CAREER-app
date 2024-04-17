@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gp_app/core/utils/classes/jobs_model.dart';
 import 'package:gp_app/core/widgets/custom_app_bar.dart';
 
 import 'apply_container.dart';
 import 'job_description_container.dart';
 
 class JobDescriptionViewBody extends StatelessWidget {
-  const JobDescriptionViewBody({
-    super.key,
-  });
+  final JobsModel job;
+  const JobDescriptionViewBody({super.key, required this.job});
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +31,13 @@ class JobDescriptionViewBody extends StatelessWidget {
             ),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.only(top: 80.0),
+        Padding(
+          padding: const EdgeInsets.only(top: 80.0),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                ApplyContainer(),
-                JobDescriptionContainer(),
+                ApplyContainer(job: job),
+                JobDescriptionContainer(job: job),
               ],
             ),
           ),

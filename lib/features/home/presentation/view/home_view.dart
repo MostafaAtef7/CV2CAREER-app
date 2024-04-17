@@ -12,11 +12,14 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  bool isLoading = false;
+  bool isLoading = true;
   List<JobsModel> jobs = [];
   @override
   void initState() {
-    getData();
+    if (jobs.isEmpty) {
+      getData();
+    }
+
     super.initState();
   }
 
@@ -38,6 +41,7 @@ class _HomeViewState extends State<HomeView> {
         }
       },
       builder: (context, state) {
+        print("${jobs.length}::::Length ===================");
         return isLoading
             ? const Center(
                 child: CircularProgressIndicator(

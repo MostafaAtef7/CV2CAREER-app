@@ -17,7 +17,8 @@ class SignUpListView extends StatelessWidget {
             children: [
               Image.asset(
                 AssetsData.registerImage,
-                height: 150,
+                height: 200,
+                width: 300,
               ),
               const SizedBox(
                 height: 5,

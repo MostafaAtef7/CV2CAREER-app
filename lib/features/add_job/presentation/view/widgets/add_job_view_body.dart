@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gp_app/constants.dart';
+import 'package:gp_app/core/utils/classes/database.dart';
 import 'package:gp_app/core/widgets/custom_app_bar.dart';
 import 'package:gp_app/core/widgets/defaultbutton.dart';
 import 'package:gp_app/features/add_job/presentation/view/widgets/text_field.dart';
@@ -11,13 +13,71 @@ class AddJobViewBody extends StatefulWidget {
 }
 
 class _AddJobViewBodyState extends State<AddJobViewBody> {
-  TextEditingController? companyName;
-  TextEditingController? salary;
-  TextEditingController? jobName;
-  TextEditingController? location;
-  TextEditingController? type;
-  TextEditingController? description;
-  TextEditingController? requirement;
+  TextEditingController? companyName = TextEditingController();
+  TextEditingController? salary = TextEditingController();
+  TextEditingController? jobName = TextEditingController();
+  TextEditingController? skills = TextEditingController();
+  TextEditingController? type = TextEditingController();
+  TextEditingController? description = TextEditingController();
+  TextEditingController? requirement = TextEditingController();
+  final Database _dataservises = Database();
+
+  void sendData() async {
+    if (companyName!.text.isNotEmpty &&
+        salary!.text.isNotEmpty &&
+        jobName!.text.isNotEmpty &&
+        skills!.text.isNotEmpty &&
+        type!.text.isNotEmpty &&
+        description!.text.isNotEmpty &&
+        requirement!.text.isNotEmpty) {
+      _dataservises.addData(
+          company: companyName!.text,
+          education: "N/A",
+          experience: "N/A",
+          jobCategory: "N/A",
+          jobDescription: description!.text,
+          jobLinkHref: "N/A",
+          jobRequirement: requirement!.text,
+          jobResponsibilities: "N/A",
+          jobTitle: jobName!.text,
+          jobType: type!.text,
+          postedAt: "N/A",
+          salary: salary!.text,
+          skills: skills!.text);
+      companyName!.clear();
+      salary!.clear();
+      jobName!.clear();
+      skills!.clear();
+      type!.clear();
+      description!.clear();
+      requirement!.clear();
+
+      Navigator.pop(context);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          content: Container(
+            padding: const EdgeInsets.all(13),
+            height: 50,
+            decoration: BoxDecoration(
+              color: chatColor,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: const Text(
+              " Please Fill All Fields !!",
+              style: TextStyle(
+                color: unSelectedColor,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -72,39 +132,34 @@ class _AddJobViewBodyState extends State<AddJobViewBody> {
                         width: double.infinity,
                         maxline: 1,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          AddTextfield(
-                            controller: salary,
-                            title: "Salary",
-                            width: 115,
-                            maxline: 1,
-                          ),
-                          AddTextfield(
-                            controller: jobName,
-                            title: "job Name",
-                            width: 115,
-                            maxline: 1,
-                          )
-                        ],
+                      AddTextfield(
+                        controller: jobName,
+                        title: "Job Title",
+                        width: double.infinity,
+                        maxline: 1,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           AddTextfield(
-                            controller: location,
-                            title: "Location",
-                            width: 115,
-                            maxline: 1,
-                          ),
-                          AddTextfield(
                             controller: type,
                             title: "Type",
                             width: 115,
                             maxline: 1,
+                          ),
+                          AddTextfield(
+                            controller: salary,
+                            title: "Salary",
+                            width: 115,
+                            maxline: 1,
                           )
                         ],
+                      ),
+                      AddTextfield(
+                        controller: skills,
+                        title: "Skills",
+                        width: double.infinity,
+                        maxline: 3,
                       ),
                       AddTextfield(
                         controller: description,
@@ -124,7 +179,9 @@ class _AddJobViewBodyState extends State<AddJobViewBody> {
               ),
               DefaultButton(
                 text: 'Add Job',
-                onPressed: () {},
+                onPressed: () async {
+                  sendData();
+                },
               ),
             ],
           ),

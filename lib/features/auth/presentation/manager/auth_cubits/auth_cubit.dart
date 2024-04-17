@@ -78,7 +78,7 @@ class AuthCubit extends Cubit<AuthState> {
       // __________________
       await save(emailAddress: emailAddress, userType: userType);
       await check(emailAddress: emailAddress);
-      print(checkHR! + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+      print("${checkHR!}AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
       emit(RegisterSuccess(checkHR: checkHR!));
       // saveSignUpData(
       //     emailAddress: emailAddress,

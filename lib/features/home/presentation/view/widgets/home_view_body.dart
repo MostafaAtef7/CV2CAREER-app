@@ -17,15 +17,8 @@ class HomeViewBody extends StatefulWidget {
 class _HomeViewBodyState extends State<HomeViewBody> {
   late String userName = " ";
 
-  // void retrieveData() async {
-  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  //   userName = sharedPreferences.getString('userName')!;
-  //   setState(() {});
-  // }
-
   @override
   void initState() {
-    // retrieveData();
     super.initState();
   }
 
@@ -64,75 +57,80 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             left: 18,
             top: 65,
           ),
-          child: CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+          child: Column(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            "General Jobs",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontFamily: "Inter",
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              GoRouter.of(context).push(
-                                  AppRouter.seeAllGeneralJob,
-                                  extra: widget.jobs);
-                            },
-                            child: const Row(
-                              children: [
-                                Text(
-                                  "See All",
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white,
-                                    fontFamily: "Inter",
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 15,
-                                  color: Colors.white,
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      const GeneralJobList(),
-                      const SizedBox(
-                        height: 20,
-                      ),
                       const Text(
-                        "Recommended Jobs",
+                        "General Jobs",
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white,
                           fontFamily: "Inter",
                         ),
                       ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                    ]),
+                      GestureDetector(
+                        onTap: () {
+                          GoRouter.of(context).push(AppRouter.seeAllGeneralJob,
+                              extra: widget.jobs);
+                        },
+                        child: const Row(
+                          children: [
+                            Text(
+                              "See All",
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                                fontFamily: "Inter",
+                              ),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              size: 15,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  GeneralJobList(jobs: widget.jobs),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    "Recommended Jobs",
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Inter",
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                ],
               ),
-              // SliverFillRemaining => make ListView built the remaining space in the screen not all items at once
-              const RecommendedJobList()
+              RecommendedJobList(jobs: widget.jobs),
             ],
           ),
+          //  CustomScrollView(
+          //   slivers: [
+          //     SliverToBoxAdapter(
+          //       child: ),
+          //     // SliverFillRemaining => make ListView built the remaining space in the screen not all items at once
+
+          //   ],
+          // ),
         )
       ],
     );

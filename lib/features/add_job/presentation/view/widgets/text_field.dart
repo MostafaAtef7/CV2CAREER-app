@@ -38,9 +38,6 @@ class AddTextfield extends StatelessWidget {
             ],
           ),
           child: TextFormField(
-            onTap: () {
-              print("click");
-            },
             maxLines: maxline,
             style: const TextStyle(fontSize: 13, color: unSelectedColor),
             controller: controller,

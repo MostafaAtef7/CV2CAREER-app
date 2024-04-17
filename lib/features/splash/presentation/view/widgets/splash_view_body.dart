@@ -19,24 +19,23 @@ class _splashScreenState extends State<SplashViewBody> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future.delayed(const Duration(seconds: 5), () async{
+    Future.delayed(const Duration(seconds: 5), () async {
       String checkHR;
-      if(FirebaseAuth.instance.currentUser == null) {
+      if (FirebaseAuth.instance.currentUser == null) {
         GoRouter.of(context).pushReplacement(AppRouter.onboarding);
-        }
-          
-          else{ 
-      String email = FirebaseAuth.instance.currentUser!.email!;
-            checkHR = await getCheckHR(email: email);
-            
-            GoRouter.of(context).pushReplacement(AppRouter.bottomBar,extra: checkHR);
-            }
+      } else {
+        String email = FirebaseAuth.instance.currentUser!.email!;
+        checkHR = await getCheckHR(email: email);
+
+        GoRouter.of(context)
+            .pushReplacement(AppRouter.bottomBar, extra: checkHR);
+      }
     });
   }
 
-  Future<String> getCheckHR({required String email}) async{
-          await BlocProvider.of<AuthCubit>(context).check(emailAddress: email);
-          return BlocProvider.of<AuthCubit>(context).checkHR!;
+  Future<String> getCheckHR({required String email}) async {
+    await BlocProvider.of<AuthCubit>(context).check(emailAddress: email);
+    return BlocProvider.of<AuthCubit>(context).checkHR!;
   }
 
   @override

@@ -1,4 +1,0 @@
-domain folder define business logic of the app (what i will use from the data that retrieved from API)
-contains two folder
-[1] entities
-[2] repo

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gp_app/core/utils/classes/jobs_model.dart';
 
 class GeneralJobContainer extends StatelessWidget {
-  const GeneralJobContainer({super.key});
+  final JobsModel job;
+  const GeneralJobContainer({super.key, required this.job});
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +29,9 @@ class GeneralJobContainer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              "Job Title",
-              style: TextStyle(
+            Text(
+              job.jobTitle ?? "N/A",
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
                 fontFamily: "Inter",
@@ -47,11 +49,16 @@ class GeneralJobContainer extends StatelessWidget {
                 const SizedBox(
                   width: 5,
                 ),
-                const Text(
-                  "10,000",
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontFamily: "Inter",
+                SizedBox(
+                  width: 100,
+                  child: Text(
+                    job.salary ?? "N/A",
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontFamily: "Inter",
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
@@ -59,19 +66,19 @@ class GeneralJobContainer extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            const Row(
+            Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.location_on,
                   size: 15,
                   color: Colors.yellow,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 Text(
-                  "Remote",
-                  style: TextStyle(
+                  job.jobType ?? "N/A",
+                  style: const TextStyle(
                     fontSize: 12,
                     fontFamily: "Inter",
                   ),

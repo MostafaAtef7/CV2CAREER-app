@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gp_app/core/utils/classes/jobs_model.dart';
 import 'package:gp_app/core/widgets/custom_app_bar.dart';
 
 import 'general_job_list.dart';
 
 class SeeAllGeneralJobViewBody extends StatelessWidget {
-  const SeeAllGeneralJobViewBody({super.key});
+  final List<JobsModel> jobs;
+  const SeeAllGeneralJobViewBody({super.key, required this.jobs});
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +29,12 @@ class SeeAllGeneralJobViewBody extends StatelessWidget {
           ),
         ),
       ),
-      const Padding(
-        padding: EdgeInsets.only(top: 65, left: 10, right: 10),
+      Padding(
+        padding: const EdgeInsets.only(top: 65, left: 10, right: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(left: 20),
               child: Text(
                 "General Jobs",
@@ -44,7 +46,7 @@ class SeeAllGeneralJobViewBody extends StatelessWidget {
                 ),
               ),
             ),
-            SeeAllGeneralJobList(),
+            SeeAllGeneralJobList(jobs: jobs),
           ],
         ),
       ),

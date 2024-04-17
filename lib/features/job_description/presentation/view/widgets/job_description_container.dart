@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gp_app/constants.dart';
+import 'package:gp_app/core/utils/classes/jobs_model.dart';
 import 'package:gp_app/features/job_description/presentation/view/widgets/text_component.dart';
 import 'package:readmore/readmore.dart';
 
 class JobDescriptionContainer extends StatefulWidget {
-  const JobDescriptionContainer({super.key});
+  final JobsModel job;
+  const JobDescriptionContainer({super.key, required this.job});
 
   @override
   State<JobDescriptionContainer> createState() =>
@@ -12,22 +14,27 @@ class JobDescriptionContainer extends StatefulWidget {
 }
 
 class _JobDescriptionContainerState extends State<JobDescriptionContainer> {
+  int currentIndex = 0;
   List<String> options = [
     "Show All",
     "Description",
     "Requirement",
-    "Reqired",
+    "Skils",
   ];
 
-  List<String> data = [
-    "Jamaykaa.com is a B2B2C E-commerce marketplace that connects social sellers (affiliate marketing) to suppliers and we provide end-to-end logistics and fulfillment.Our mission is to provide social sellers, who aspire to grow their online business, with a one-stop platform that covers all their logistics needs - We provide products, shipping, and warehousing",
-    "At least 2 years of experience in adding products The ability to follow up on inventory and coordinate with merchants",
-    "Required"
-  ];
+  // List<String> data = [
+  //   "Jamaykaa.com is a B2B2C E-commerce marketplace that connects social sellers (affiliate marketing) to suppliers and we provide end-to-end logistics and fulfillment.Our mission is to provide social sellers, who aspire to grow their online business, with a one-stop platform that covers all their logistics needs - We provide products, shipping, and warehousing",
+  //   "At least 2 years of experience in adding products The ability to follow up on inventory and coordinate with merchants",
+  //   "Required"
+  // ];
 
-  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
+    List<String> data = [
+      widget.job.jobDescription ?? "N/A",
+      widget.job.jobRequirement ?? "N/A",
+      widget.job.skills ?? "N/A"
+    ];
     return Container(
       padding: const EdgeInsets.all(20),
       child: Column(
