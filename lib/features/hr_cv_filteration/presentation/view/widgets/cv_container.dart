@@ -4,8 +4,10 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class CVContainer extends StatelessWidget {
   final String txt;
+  final String email;
   final double per;
-  const CVContainer({super.key, required this.txt, required this.per});
+  const CVContainer(
+      {super.key, required this.txt, required this.per, required this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +21,19 @@ class CVContainer extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            txt,
-            style: const TextStyle(fontWeight: FontWeight.w600),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                txt,
+                style: const TextStyle(fontWeight: FontWeight.w600),
+              ),
+              Text(
+                email,
+                style:
+                    const TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
+              ),
+            ],
           ),
           CircularPercentIndicator(
             radius: 20.0,
