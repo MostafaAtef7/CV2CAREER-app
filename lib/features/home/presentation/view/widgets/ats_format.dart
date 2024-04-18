@@ -4,7 +4,6 @@ import 'package:gp_app/constants.dart';
 import 'package:gp_app/core/utils/classes/app_routers.dart';
 import 'package:gp_app/core/widgets/custom_app_bar.dart';
 import 'package:gp_app/features/cv_view/data/cv_data.dart';
-import 'package:gp_app/features/setting/functions/view_ats.dart';
 
 class AtsFormat extends StatelessWidget {
   const AtsFormat({super.key});
@@ -62,7 +61,7 @@ class AtsFormat extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.arrow_right,
                     color: unSelectedColor,
                   )

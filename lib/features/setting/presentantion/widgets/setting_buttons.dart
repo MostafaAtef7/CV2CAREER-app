@@ -5,7 +5,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gp_app/core/utils/classes/app_routers.dart';
 import 'package:gp_app/features/auth/presentation/manager/auth_cubits/auth_cubit.dart';
-import 'package:gp_app/features/setting/functions/view_ats.dart';
 import 'custom_setting_button.dart';
 
 class SettingButtons extends StatefulWidget {
@@ -22,7 +21,7 @@ class _SettingButtonsState extends State<SettingButtons> {
     String email = FirebaseAuth.instance.currentUser!.email!;
     await BlocProvider.of<AuthCubit>(context).check(emailAddress: email);
     checkHR = BlocProvider.of<AuthCubit>(context).checkHR!;
-    print("checkHR :::: ${checkHR}");
+    print("checkHR :::: $checkHR");
   }
 
   @override
@@ -38,7 +37,7 @@ class _SettingButtonsState extends State<SettingButtons> {
       builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // Show a loading indicator while waiting for getCheckHR() to complete
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         } else {
           // Once getCheckHR() completes, build the UI based on the result
           return Column(

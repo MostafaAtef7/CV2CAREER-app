@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:gp_app/core/utils/classes/app_routers.dart';
 import 'package:gp_app/core/widgets/custom_app_bar.dart';
-import 'package:gp_app/features/cv_view/data/cv_data.dart';
 import 'package:gp_app/features/hr_cv_filteration/presentation/view/widgets/applied_job_contianer_title.dart';
-import 'package:gp_app/features/hr_cv_filteration/presentation/view/widgets/cv_container.dart';
 
 class HrCvFilterationViewBody extends StatefulWidget {
   const HrCvFilterationViewBody({super.key});
@@ -34,7 +30,7 @@ class _NotificationViewBodyState extends State<HrCvFilterationViewBody> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(
+          padding: EdgeInsets.only(
             right: 18,
             left: 18,
             top: 65,

@@ -27,19 +27,19 @@ class AppliedJobContainerTitle extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     height: 10,
                   ),
                   Text(
                     "Full Stack Developer",
-                    style: const TextStyle(fontWeight: FontWeight.w600),
+                    style: TextStyle(fontWeight: FontWeight.w600),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 7,
                   ),
                   Text(
                     "Design, develop, and maintain websites and web applications using modern technologies such as HTML5, CSS3, JavaScript, React, Angular, Vue.js, Node.js, Express.js, MongoDB, and MySQL.",
-                    style: const TextStyle(
+                    style: TextStyle(
                         fontSize: 10, fontWeight: FontWeight.w400),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
@@ -47,7 +47,7 @@ class AppliedJobContainerTitle extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(
+            SizedBox(
               width: 10,
             ),
             Icon(Icons.arrow_forward_ios),

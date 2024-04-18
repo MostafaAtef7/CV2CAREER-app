@@ -19,7 +19,7 @@ class Chatservices {
           final user1 = doc.data(); // Cast user to Map<String, dynamic>
           IdsOfUser1.add(user1["uid"]);
           print("list1 : ${IdsOfUser1.length}");
-          print("user :  ${user1}");
+          print("user :  $user1");
         }
       } else {
         print("No documents found in chatRooms collection.");

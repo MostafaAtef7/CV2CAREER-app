@@ -93,9 +93,9 @@ class _HrHomeViewBodyState extends State<HrHomeViewBody> {
                         ],
                       );
                     }
-                    if (snapshot.data!.length == 0) {
+                    if (snapshot.data!.isEmpty) {
                       return Container(
-                        padding: EdgeInsets.only(top: 90),
+                        padding: const EdgeInsets.only(top: 90),
                         child: Center(
                           child: Image.asset(
                             AssetsData.addNewJob,

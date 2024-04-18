@@ -37,7 +37,7 @@ class _SettingViewBodyState extends State<SettingViewBody> {
       builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // Show a loading indicator while waiting for getCheckHR() to complete
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         } else {
           // Once getCheckHR() completes, build the UI based on the result
           return Stack(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gp_app/core/utils/classes/jobs_model.dart';
-import 'package:gp_app/core/widgets/custom_app_bar.dart';
 import '../../../../../core/utils/classes/app_routers.dart';
 import 'general_job_list.dart';
 import 'recommended_job_list.dart';

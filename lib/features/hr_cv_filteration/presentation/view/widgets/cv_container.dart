@@ -41,7 +41,7 @@ class CVContainer extends StatelessWidget {
             percent: per,
             center: Text(
               "${per * 100}%",
-              style: TextStyle(fontSize: 8, fontWeight: FontWeight.w800),
+              style: const TextStyle(fontSize: 8, fontWeight: FontWeight.w800),
             ),
             progressColor: kPrimaryColor,
             animation: true,

@@ -15,9 +15,9 @@ class Database {
       if (data.exists) {
         Map<dynamic, dynamic> dataMap = data.value as Map<dynamic, dynamic>;
         // Loop through the map entries instead of treating it as a list
-        dataMap.entries.forEach((entry) {
+        for (var entry in dataMap.entries) {
           jobs.add(JobsModel.fromJson(entry.value as Map<dynamic, dynamic>));
-        });
+        }
       }
       return jobs;
     } catch (e) {
@@ -40,7 +40,7 @@ class Database {
       required String? jobDescription,
       required String? jobResponsibilities,
       required String? jobRequirement}) async {
-    String id = FirebaseAuth.instance.currentUser!.uid!;
+    String id = FirebaseAuth.instance.currentUser!.uid;
     print("email ::: $id");
     final DatabaseReference addDatabase =
         FirebaseDatabase.instance.ref("jobs/$id");
