@@ -27,10 +27,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -49,6 +46,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '748079990514',
     projectId: 'cv2careerauth',
     authDomain: 'cv2careerauth.firebaseapp.com',
+    databaseURL: 'https://cv2careerauth-default-rtdb.firebaseio.com',
     storageBucket: 'cv2careerauth.appspot.com',
     measurementId: 'G-1V4NP35CJT',
   );
@@ -58,6 +56,7 @@ class DefaultFirebaseOptions {
     appId: '1:748079990514:android:078019000e5cb36a86326b',
     messagingSenderId: '748079990514',
     projectId: 'cv2careerauth',
+    databaseURL: 'https://cv2careerauth-default-rtdb.firebaseio.com',
     storageBucket: 'cv2careerauth.appspot.com',
   );
 
@@ -66,16 +65,30 @@ class DefaultFirebaseOptions {
     appId: '1:748079990514:ios:8bbfa98f6a78a62c86326b',
     messagingSenderId: '748079990514',
     projectId: 'cv2careerauth',
+    databaseURL: 'https://cv2careerauth-default-rtdb.firebaseio.com',
     storageBucket: 'cv2careerauth.appspot.com',
     iosBundleId: 'com.example.gpApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyC2tXg8z-9fvNR-tS3pc56KEXtpogiNxCk',
-    appId: '1:748079990514:ios:f272d0bf9cfe5aeb86326b',
+    appId: '1:748079990514:ios:8bbfa98f6a78a62c86326b',
     messagingSenderId: '748079990514',
     projectId: 'cv2careerauth',
+    databaseURL: 'https://cv2careerauth-default-rtdb.firebaseio.com',
     storageBucket: 'cv2careerauth.appspot.com',
-    iosBundleId: 'com.example.gpApp.RunnerTests',
+    iosBundleId: 'com.example.gpApp',
   );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyAxUGGIync5VaQJ6xIELCBBHpz0eqjkS7Q',
+    appId: '1:748079990514:web:50c4477cbaa02b2e86326b',
+    messagingSenderId: '748079990514',
+    projectId: 'cv2careerauth',
+    authDomain: 'cv2careerauth.firebaseapp.com',
+    databaseURL: 'https://cv2careerauth-default-rtdb.firebaseio.com',
+    storageBucket: 'cv2careerauth.appspot.com',
+    measurementId: 'G-D7FD19NXNZ',
+  );
+
 }

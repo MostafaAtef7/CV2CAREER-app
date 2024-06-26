@@ -57,6 +57,7 @@ dependencies:
   firebase_database: ^10.5.1
   font_awesome_flutter: ^10.7.0
   percent_indicator: ^4.2.3
+  msh_checkbox: ^2.0.1  #animation Checkbox in githubscreen
 
 dev_dependencies:
   flutter_lints: ^2.0.0

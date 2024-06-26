@@ -9,12 +9,14 @@ import 'package:gp_app/features/auth/presentation/view/login.dart';
 import 'package:gp_app/features/auth/presentation/view/signup.dart';
 import 'package:gp_app/features/cv_view/presentation/view/cv_view.dart';
 import 'package:gp_app/features/edit_profile/presentation/views/edit_profile_view.dart';
+import 'package:gp_app/features/github/presentation/view/github_view.dart';
 import 'package:gp_app/features/job_description/presentation/view/job_descrption_view.dart';
 import 'package:gp_app/features/home/presentation/view/home_view.dart';
 import 'package:gp_app/features/onboarding/presentation/view/onboarding.dart';
 import 'package:gp_app/features/see_all_general_job/presentation/view/see_all_general_job_view.dart';
 import 'package:gp_app/features/setting/presentantion/widgets/setting_view_body.dart';
 import 'package:gp_app/features/splash/presentation/view/splash_view.dart';
+import 'package:gp_app/features/tempales/presentation/view/template_view.dart';
 import 'package:gp_app/features/uploadCV/presentation/view/uploadcv_view.dart';
 
 abstract class AppRouter {
@@ -30,6 +32,7 @@ abstract class AppRouter {
   static const String seeAllGeneralJob = "/seeAllGeneralJob";
   static const String addJob = "/AddJobView";
   static const String editProfile = "/editProfile";
+  static const String githubView = "/GithubView";
 
   static final router = GoRouter(
     routes: [
@@ -79,6 +82,10 @@ abstract class AppRouter {
       GoRoute(
         path: uploadCV,
         builder: (ctx, state) => UploadCvView(checkHR: state.extra as String),
+      ),
+      GoRoute(
+        path: githubView,
+        builder: (ctx, state) => GithubView(checkHR: state.extra as String),
       ),
       GoRoute(
         path: viewCV,

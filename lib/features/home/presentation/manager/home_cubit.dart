@@ -11,7 +11,6 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeLoading());
     try {
       List<JobsModel> jobs = await Database().fetchDataFromDatabase();
-
       emit(HomeSuccess(jobs: jobs));
     } catch (e) {
       emit(HomeFailure(errorMessage: 'No user found for that email.'));

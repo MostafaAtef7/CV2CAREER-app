@@ -58,7 +58,7 @@ class _SettingButtonsState extends State<SettingButtons> {
                       text: 'Change Your CV',
                       onPressed: () async {
                         GoRouter.of(context)
-                            .push(AppRouter.uploadCV, extra: checkHR);
+                            .push(AppRouter.githubView, extra: checkHR);
                       },
                       icon: FontAwesomeIcons.arrowUpFromBracket,
                       iconSize: 18,

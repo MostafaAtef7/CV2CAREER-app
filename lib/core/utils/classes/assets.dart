@@ -8,4 +8,8 @@ class AssetsData {
   static String splashImage = 'assets/images/aplash.png';
   static String uploadCVImage = 'assets/images/uploadCV.png';
   static String addNewJob = 'assets/images/Add files.png';
+  static String githubtitle = 'assets/images/GitHub_Logo.png';
+  static String githublogo = 'assets/images/github-mark.png';
+  static String template1 = 'assets/images/template1.jpg';
+  static String template2 = 'assets/images/template2.jpg';
 }

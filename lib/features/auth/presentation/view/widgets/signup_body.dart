@@ -33,7 +33,8 @@ class _SignUpBodyState extends State<SignUpBody> {
               onConfirmBtnTap: () {
                 if (state.checkHR != "HR") {
                   print("${state.checkHR}*********************");
-                  GoRouter.of(context).push(AppRouter.uploadCV, extra: state.checkHR);
+                  GoRouter.of(context)
+                      .push(AppRouter.githubView, extra: state.checkHR);
                 } else {
                   GoRouter.of(context)
                       .push(AppRouter.bottomBar, extra: state.checkHR);
